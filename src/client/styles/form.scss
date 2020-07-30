@@ -4,6 +4,7 @@ $progress-icon-padding: 8px;
 $progress-dots-height: 5px;
 
 form {
+    padding: 1.5em;
 
     #progress-tracker {
         // border: 1px solid red;
@@ -35,5 +36,19 @@ form {
             border-top: $progress-dots-height dotted $color-primary-dark;
         }
     }
+}
+
+/* TABLET AND MEDIUM DESKTOP DEVICES */
+@media(min-width: 780px) {
+
+    form {
+
+        #progress-tracker {
+            width: 70%;
+            margin: 0 auto;
+        }
+
+    }
+
 }
 

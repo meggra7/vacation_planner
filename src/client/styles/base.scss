@@ -8,6 +8,7 @@ $color-text-primary: #263238;
 $font-family-sans-serif: 'Roboto Condensed', Arial, Helvetica, sans-serif;
 $font-family-tillana: 'Tillana', fantasy; // Tribal
 $font-family-caveat: 'Caveat', cursive; // Handwriting
+$rounded-corners: 4px;
 
 body {
     font-family: $font-family-sans-serif;
@@ -29,11 +30,15 @@ h2 {
     font-weight: 300;
     font-variant: small-caps;
     font-size: 2em;
+    text-align: center;
+}
+
+section {
+    margin-top: 64px;
 }
 
 .card {
-    border-radius: 4px;
+    border-radius: $rounded-corners;
     box-shadow: 3px 3px 10px darkgray;
     margin: 1em 0;
-    padding: 1.5em;
 }

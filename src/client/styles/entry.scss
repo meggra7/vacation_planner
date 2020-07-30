@@ -1,0 +1,90 @@
+@use 'base' as *;
+$entry-texts-margin: 8px 16px;
+
+#upcoming {
+    border: 1px solid red;
+
+    div.card {
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            border: 1px solid red;
+            width: 100%;
+            border-radius: 
+                $rounded-corners 
+                $rounded-corners
+                0
+                0;
+            object-fit: cover;
+        }
+
+        #basic-info {
+            border: 1px solid red;
+            font-family: $font-family-caveat;
+            font-size: 1.4em;
+        }
+
+        h3 {
+            border: 1px solid red;
+            font-family: $font-family-sans-serif;
+            font-size: 1.25em;
+            font-weight: 400;
+            font-variant: small-caps;
+            margin: $entry-texts-margin;
+        }
+
+        p {
+            border: 1px solid red;
+            margin: $entry-texts-margin;
+        }
+
+        div.weather {
+            border: 1px solid red;
+            margin: $entry-texts-margin;
+        }
+    }
+}
+
+/* TABLET AND MEDIUM DESKTOP DEVICES */
+@media(min-width: 780px) {
+
+    #upcoming {
+
+        /* Switch to horizontal layout */
+        div.card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                'img  text'
+                'img  text'
+                'img  text'
+                'img  text'
+                'img  text';
+
+            img {
+                grid-area: img;
+                border-radius: 
+                    $rounded-corners
+                    0
+                    0
+                    $rounded-corners;
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+/* WIDE TABLET AND DESKTOP DEVICES */
+// @media(min-width: 1170px) {
+
+//     #upcoming {
+
+//         /* Update width ratio of image to text */
+//         div.card {
+//             grid-template-columns: 1fr 2fr;
+//         }
+//     }
+// }

@@ -1,3 +1,39 @@
+$color-primary: #26c6da;
+$color-primary-light: #6ff9ff;
+$color-primary-dark: #0095a8;
+$color-secondary: #ffeb3b;
+$color-secondary-light: #ffff72;
+$color-secondary-dark: #c8b900;
+$color-text-primary: #263238;
+$font-family-sans-serif: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+$font-family-tillana: 'Tillana', fantasy; // Tribal
+$font-family-caveat: 'Caveat', cursive; // Handwriting
+
 body {
-    background-color: blue;
+    font-family: $font-family-sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    min-width: 320px;
+    margin: 0 5%;
+}
+
+h1 {
+    font-family: $font-family-tillana;
+    font-weight: 400;
+    font-variant: small-caps;
+    font-size: 3em;
+}
+
+h2 {
+    font-family: $font-family-caveat;
+    font-weight: 300;
+    font-variant: small-caps;
+    font-size: 2em;
+}
+
+.card {
+    border-radius: 4px;
+    box-shadow: 3px 3px 10px darkgray;
+    margin: 1em 0;
+    padding: 1.5em;
 }

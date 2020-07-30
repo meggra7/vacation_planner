@@ -1,0 +1,39 @@
+@use 'base' as *;
+$progress-icon-size: 20px;
+$progress-icon-padding: 8px;
+$progress-dots-height: 5px;
+
+form {
+
+    #progress-tracker {
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+
+        img {
+            // border: 1px solid red;
+            width: $progress-icon-size;
+            height: $progress-icon-size;
+            object-fit: contain;
+            padding: $progress-icon-padding;
+
+            &.current {
+                // Larger airplane icon when current step
+                width: $progress-icon-size * 2;
+                height: $progress-icon-size * 2;
+            }
+        }
+
+        span {
+            // Dots achieved by dotted top border that is half the largest icon height and aligned to bottom
+            flex-grow: 1;
+            align-self: flex-end;
+            height: $progress-icon-size - ($progress-dots-height / 2); // Account for border height
+            padding: $progress-icon-padding / 2;
+            border-top: $progress-dots-height dotted $color-primary-dark;
+        }
+    }
+}
+

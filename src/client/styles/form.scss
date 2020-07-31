@@ -52,6 +52,10 @@ $progress-dots-height: 5px;
             padding: $progress-icon-padding / 2;
             border-top: $progress-dots-height dotted $color-secondary;
         }
+
+        &.hidden {
+            display: none;
+        }
     }
 
     form {

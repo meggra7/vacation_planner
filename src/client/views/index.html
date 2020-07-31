@@ -40,7 +40,7 @@
                             </select>
                         </div>
                     </form>
-                    <form id='step-two'>
+                    <form id='step-two' class='visible'>
                         <h3>Please confirm your destination:</h3>
                         <input type="radio" name="destination" value="one">
                         <label for="male">New York, NY</label><br><br>
@@ -49,7 +49,7 @@
                         <input type="radio" name="destination" value="three">
                         <label for="other">London, England</label> 
                     </form>
-                    <form id='step-three' class='visible'>
+                    <form id='step-three'>
                         <h3>When are you going?</h3>
                         <label id='date-from-label' for='date-from'>From</label>
                         <input id='date-from' type=date>
@@ -61,8 +61,8 @@
                         <textarea id='itinerary-input' rows='5' placeholder="Enter your itinerary or other travel plans here"></textarea>
                     </form>
                     <div id='button-container'>
-                        <button id='back' disabled>Let's go!</button>
-                        <button id='forward'>Next</button>
+                        <button id='back-button'>Back</button>
+                        <button id='forward-button'>Next</button>
                     </div>
                 </div>
             </section>

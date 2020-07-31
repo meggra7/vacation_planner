@@ -12,6 +12,17 @@ export {
     scrollTo,
 };
 
+import {
+    backButtonPress,
+    forwardButtonPress,
+    goToStep
+} from './js/form.js';
+export {
+    backButtonPress,
+    forwardButtonPress,
+    goToStep
+}
+
 /* Import all stylesheets */
 import './styles/reset.scss';
 import './styles/base.scss';
@@ -46,6 +57,12 @@ import t01d from './media/weather-icons/t01d.png';
 import t04d from './media/weather-icons/t04d.png';
 import u00d from './media/weather-icons/u00d.png';
 
+export {
+    airplane,
+    stepUpcoming,
+    stepCompleted
+}
+
 
 
 
@@ -61,7 +78,6 @@ document.getElementById('progress-tracker-four').setAttribute('src', stepUpcomin
 document.getElementById('upcoming').getElementsByTagName('img')[0].setAttribute('src', placeholderImage);
 
 const icons = document.getElementsByClassName('icon');
-console.log(icons);
 for (let i = 0; i < icons.length; i++) {
     switch (i) {
         case 0:
@@ -92,5 +108,7 @@ document.querySelector('header').addEventListener('mouseover', checkHeaderVisibi
 // Add listener to nav bar to override scroll behavior when clicked.
 document.querySelector('header').addEventListener('click', scrollTo);
 
-
+// Add listeners to form buttons
+document.querySelector('#back-button').addEventListener('click', backButtonPress);
+document.querySelector('#forward-button').addEventListener('click', forwardButtonPress);
 

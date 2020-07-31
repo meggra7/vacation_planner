@@ -1,13 +1,12 @@
 @use 'base' as *;
 
 header {
-    // border: 1px solid red;
     height: 6em;
-    padding: 2em 5% 2em;
+    padding: 5%;
     background: linear-gradient(to bottom, rgba($color-primary, 1) 0%, rgba($color-primary, 0) 100%); /* fades to bottom */
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 90%; // Remaining 10% added from padding
     z-index: 5;
 
     &.hidden {

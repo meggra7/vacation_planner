@@ -18,6 +18,7 @@ import './styles/base.scss';
 import './styles/header.scss';
 import './styles/form.scss';
 import './styles/entry.scss';
+import './styles/footer.scss';
 
 /* Import image(s) */
 import loadingIndicator from './media/Cube-1s-200px.gif';

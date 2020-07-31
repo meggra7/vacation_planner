@@ -1,0 +1,20 @@
+@use 'base' as *;
+
+footer {
+    background-color: $color-secondary-light;
+    margin-top: 64px;
+    padding: 3em 5%;
+    text-align: center;
+    line-height: 1.25em;
+    font-size: .75em;
+    font-weight: 400;
+
+    a, a:visited {
+        color: $color-text-primary;
+    }
+
+    a:hover {
+        color: $color-primary-dark;
+    }
+
+}

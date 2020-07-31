@@ -13,12 +13,12 @@ $rounded-corners: 4px;
 body {
     background-color: linen;
     color: $color-text-primary;
-}
-
-main {
     font-family: $font-family-sans-serif;
     font-weight: 300;
     font-size: 18px;
+}
+
+main {
     min-width: 320px;
     margin: 10em 5% 0;
 }
@@ -30,6 +30,7 @@ h1 {
     font-size: 3em;
     text-shadow: 0 0 5px $color-primary-dark;
     color: white;
+    text-align: center;
 }
 
 h2 {
@@ -53,6 +54,10 @@ section {
 
 /* TABLET AND MEDIUM DESKTOP DEVICES */
 @media(min-width: 780px) {
+
+    h1 {
+        text-align: left;
+    }
 
     h2 {
         text-align: left;

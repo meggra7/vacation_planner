@@ -27,7 +27,7 @@ function checkHeaderVisibility() {
         console.log(':: mHeaderVisibilityTimeout called ::')
 
         // If user is not at top of page, hide header
-        if (pageYOffset > 100) {
+        if (pageYOffset > 45) {
             hideHeader();
         }
 

@@ -17,18 +17,53 @@
         <main>
             <section id='new'>
                 <h2>Add new trip</h2>
-                <form class='card'>
+                <div class='card'>
                     <div id='progress-tracker'>
-                        <img id='step-one' src='../media/airplane_32dp_777.png'>
+                        <img id='progress-tracker-one' src='../media/airplane_32dp_777.png'>
                         <span></span>
-                        <img id='step-two'>
+                        <img id='progress-tracker-two'>
                         <span></span>
-                        <img id='step-three'>
+                        <img id='progress-tracker-three'>
                         <span></span>
-                        <img id='step-four'>
+                        <img id='progress-tracker-four'>
                     </div>
-                    <p>User will start adding trip here</p>
-                </form>
+                    <form id='step-one' class='visible'>
+                        <h3>Where are you going?</h3>
+                        <div id='step-one-container'>
+                            <label id='city-label' for='city'>City:</label>
+                            <input id='city' type='text' placeholder="City name">
+                            <input id='state' type='text' placeholder="State (US only)" maxlength="2">
+                            <label id='country-label' for='country'>Country:</label>
+                            <select id='country'>
+                                <option value='us'>United States</option>
+                            </select>
+                        </div>
+                    </form>
+                    <form id='step-two'>
+                        <h3>Please confirm your destination:</h3>
+                        <input type="radio" name="destination" value="one">
+                        <label for="male">New York, NY</label><br><br>
+                        <input type="radio" name="destination" value="two">
+                        <label for="female">Los Angeles, CA</label><br><br>
+                        <input type="radio" name="destination" value="three">
+                        <label for="other">London, England</label> 
+                    </form>
+                    <form id='step-three'>
+                        <h3>When are you going?</h3>
+                        <label id='date-from-label' for='date-from'>From</label>
+                        <input id='date-from' type=date>
+                        <label id='date-to-label' for='date-to'>to</label>
+                        <input id='date-to' type=date>
+                    </form>
+                    <form id='step-four'>
+                        <h3>What do you plan to do there?</h3>
+                        <textarea id='itinerary-input' rows='5' placeholder="Enter your itinerary or other travel plans here"></textarea>
+                    </form>
+                    <div id='button-container'>
+                        <button id='back' disabled>Let's go!</button>
+                        <button id='forward'>Next</button>
+                    </div>
+                </div>
             </section>
             <section id='upcoming'>
                 <h2>Upcoming trips</h2>
@@ -38,7 +73,7 @@
                         <br>August 22, 2020 - August 29, 2020
                         <br>22 days away</p>
                     <h3>Itinerary</h3>
-                    <p id='itinerary'>Cupcake ipsum dolor sit. Amet wafer gummies. Jujubes cookie apple pie. Danish cookie croissant candy bear claw chocolate bar ice cream gummi bears chocolate bar.
+                    <p id='itinerary-display'>Cupcake ipsum dolor sit. Amet wafer gummies. Jujubes cookie apple pie. Danish cookie croissant candy bear claw chocolate bar ice cream gummi bears chocolate bar.
                         <br>
                         <br>Tootsie roll dessert fruitcake chocolate bar chocolate gummi bears powder sweet roll. Sesame snaps chocolate candy lemon drops. Muffin chupa chups chupa chups halvah chocolate bar wafer macaroon candy canes jelly. Apple pie jujubes pie jujubes croissant bear claw caramels.</p>
                     <h3>Weather Forecast</h3>

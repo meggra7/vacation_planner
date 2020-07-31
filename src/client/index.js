@@ -50,11 +50,11 @@ import u00d from './media/weather-icons/u00d.png';
 
 
 /* Set initial images */
-document.getElementById('step-one').setAttribute('src', stepCompleted);
-document.getElementById('step-two').classList.add('current');
-document.getElementById('step-two').setAttribute('src', airplane);
-document.getElementById('step-three').setAttribute('src', stepUpcoming);
-document.getElementById('step-four').setAttribute('src', stepUpcoming);
+document.getElementById('progress-tracker-one').setAttribute('src', stepCompleted);
+document.getElementById('progress-tracker-two').classList.add('current');
+document.getElementById('progress-tracker-two').setAttribute('src', airplane);
+document.getElementById('progress-tracker-three').setAttribute('src', stepUpcoming);
+document.getElementById('progress-tracker-four').setAttribute('src', stepUpcoming);
 
 
 document.getElementById('upcoming').getElementsByTagName('img')[0].setAttribute('src', placeholderImage);

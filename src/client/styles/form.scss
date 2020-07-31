@@ -3,15 +3,20 @@ $progress-icon-size: 20px;
 $progress-icon-padding: 8px;
 $progress-dots-height: 5px;
 
-form {
-    padding: 1.5em;
+#new {
 
+    .card {
+        margin: 1em auto;
+        padding: 2em 5%;
+        width: 90%;
+    }
+    
     #progress-tracker {
         // border: 1px solid red;
         display: flex;
         flex-direction: row;
         align-items: center;
-        width: 100%;
+        padding-bottom: 2em;
 
         img {
             // border: 1px solid red;
@@ -33,7 +38,127 @@ form {
             align-self: flex-end;
             height: $progress-icon-size - ($progress-dots-height / 2); // Account for border height
             padding: $progress-icon-padding / 2;
-            border-top: $progress-dots-height dotted $color-primary-dark;
+            border-top: $progress-dots-height dotted $color-secondary;
+        }
+    }
+
+    form {
+        display: none;
+        margin-bottom: 2em;
+        
+        #step-one-container {
+            // outline: 1px solid blue;
+            display: grid;
+            grid-template-columns: minmax(100px,auto) 1fr;
+            grid-template-areas: 
+                'cityLabel      cityInput'
+                'blank          stateInput'
+                'countryLabel   countryInput';
+
+            #city-label {
+                grid-area: cityLabel;
+            }
+
+            #city {
+                grid-area: cityInput;
+            }
+
+            #state {
+                grid-area: stateInput;
+            }
+
+            #country-label {
+                grid-area: countryLabel;
+            }
+
+            #country {
+                grid-area: countryInput;
+            }
+        }
+        
+        h3 {
+            // outline: 1px solid red;
+            
+            font-weight: 400;
+            padding-bottom: 2em;
+        }
+
+        label {
+            // outline: 1px solid red;
+            padding: 8px 8px 8px 0;
+
+            text-align: left;
+        }
+
+        input {
+            // outline: 1px solid red;
+            border-radius: $rounded-corners;
+            border: 1px solid lightgray;
+            padding: 4px 8px;
+            margin: 4px 8px 4px 0;
+            font-family: $font-family-sans-serif;
+            font-size: .75em;
+        }
+
+        select {
+            // outline: 1px solid red;
+            padding: 4px 0;
+            margin: 4px 8px 4px 0;
+            font-family: $font-family-sans-serif;
+            font-size: .75em;
+        }
+
+        textarea {
+            // border: 1px solid red;
+            border-radius: $rounded-corners;
+            border: 1px solid lightgray;
+            width: 96%;
+            resize: none;
+            padding: 8px 2%;
+            font-family: $font-family-sans-serif;
+            font-size: .75em;
+
+        }
+
+        &.visible {
+            display: block;
+        }
+    }
+
+    #button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        button {
+            background-color: $color-secondary;
+            border-radius: $rounded-corners;
+            border: none;
+            box-shadow: 1px 1px 3px $color-secondary-dark;
+            font-size: 1em;
+            text-transform: uppercase;
+            font-family: $font-family-sans-serif;
+            font-weight: 300;
+            width: 7em;
+    
+            &:hover {
+                background-color: $color-secondary-light;
+                cursor: pointer;
+            }
+    
+            &:active {
+                background-color: $color-secondary;
+                box-shadow: inset 1px 1px 3px $color-secondary-dark;
+            }
+    
+            
+    
+            &:disabled {
+                background-color: white;
+                border: 1px solid lightgray;
+                box-shadow: none;
+                cursor: auto;
+            }
         }
     }
 }
@@ -41,14 +166,22 @@ form {
 /* TABLET AND MEDIUM DESKTOP DEVICES */
 @media(min-width: 780px) {
 
-    form {
+    #new {
 
-        #progress-tracker {
+        .card {
+            padding: 2em 15%;
             width: 70%;
-            margin: 0 auto;
         }
 
-    }
+        form {
 
+            #step-one-container {
+                grid-template-columns: minmax(100px,auto) 2fr 1fr;
+                grid-template-areas: 
+                    'cityLabel      cityInput       stateInput'
+                    'countryLabel   countryInput    blank';
+            }
+        }
+    }
 }
 

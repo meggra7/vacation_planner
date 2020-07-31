@@ -11,6 +11,11 @@ $font-family-caveat: 'Caveat', cursive; // Handwriting
 $rounded-corners: 4px;
 
 body {
+    background-color: azure;
+    color: $color-text-primary;
+}
+
+main {
     font-family: $font-family-sans-serif;
     font-weight: 300;
     font-size: 18px;
@@ -20,9 +25,11 @@ body {
 
 h1 {
     font-family: $font-family-tillana;
-    font-weight: 400;
+    font-weight: 600;
     font-variant: small-caps;
     font-size: 3em;
+    text-shadow: 0 0 5px $color-primary-dark;
+    color: white;
 }
 
 h2 {
@@ -41,6 +48,7 @@ section {
     border-radius: $rounded-corners;
     box-shadow: 3px 3px 10px darkgray;
     margin: 1em 0;
+    background-color: white;
 }
 
 /* TABLET AND MEDIUM DESKTOP DEVICES */

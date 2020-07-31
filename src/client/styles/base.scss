@@ -42,3 +42,11 @@ section {
     box-shadow: 3px 3px 10px darkgray;
     margin: 1em 0;
 }
+
+/* TABLET AND MEDIUM DESKTOP DEVICES */
+@media(min-width: 780px) {
+
+    h2 {
+        text-align: left;
+    }
+}

@@ -1,16 +1,17 @@
 @use 'base' as *;
-$entry-texts-margin: 8px 16px;
+$entry-header-margin: 24px 24px 8px;
+$entry-text-margin: 8px 24px;
 
 #upcoming {
-    border: 1px solid red;
+    // border: 1px solid red;
 
-    div.card {
-        border: 1px solid red;
+    .card {
+        // border: 1px solid red;
         display: flex;
         flex-direction: column;
 
-        img {
-            border: 1px solid red;
+        img.location-photo {
+            // border: 1px solid red;
             width: 100%;
             border-radius: 
                 $rounded-corners 
@@ -21,28 +22,81 @@ $entry-texts-margin: 8px 16px;
         }
 
         #basic-info {
-            border: 1px solid red;
+            // border: 1px solid red;
             font-family: $font-family-caveat;
             font-size: 1.4em;
+            margin: $entry-header-margin;
         }
 
         h3 {
-            border: 1px solid red;
+            // border: 1px solid red;
             font-family: $font-family-sans-serif;
             font-size: 1.25em;
             font-weight: 400;
             font-variant: small-caps;
-            margin: $entry-texts-margin;
+            margin: $entry-header-margin;
         }
 
         p {
-            border: 1px solid red;
-            margin: $entry-texts-margin;
+            // border: 1px solid red;
+            margin: $entry-text-margin;
         }
 
-        div.weather {
-            border: 1px solid red;
-            margin: $entry-texts-margin;
+        #weather {
+            // border: 1px solid red;
+            margin: $entry-text-margin;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            overflow-x: auto;
+
+            .forecast {
+                
+                display: grid;
+                grid-template-rows: auto 2fr auto;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-areas: 
+                    'date   date'
+                    'img    img'
+                    'low    high';
+                border-radius: $rounded-corners;
+                border: 1px solid lightgray;
+                margin: 0 2px;
+                
+
+                p {
+                    margin: 0;
+                    padding: 8px;
+                    text-align: center;
+                    font-weight: 400;
+
+                    &.date {
+                        // border: 1px solid red;
+                        grid-area: date;
+                        // font-size: 1.25em;
+                        // font-weight: 400;
+                    }
+
+                    &.low-temp {
+                        color: $color-primary-dark;
+
+                    }
+
+                    &.high-temp {
+                        color: crimson;
+                    }
+                }
+                
+                img.icon {
+                    // border: 1px solid red;
+                    grid-area: img;
+                    height: 75px;
+                    width: 100%;
+                    object-fit: contain;
+                }
+
+
+            }
         }
     }
 }
@@ -63,7 +117,7 @@ $entry-texts-margin: 8px 16px;
                 'img  text'
                 'img  text';
 
-            img {
+            img.location-photo {
                 grid-area: img;
                 border-radius: 
                     $rounded-corners

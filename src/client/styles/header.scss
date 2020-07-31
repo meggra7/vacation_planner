@@ -5,4 +5,23 @@ header {
     height: 6em;
     padding: 2em 5% 2em;
     background: linear-gradient(to bottom, rgba($color-primary, 1) 0%, rgba($color-primary, 0) 100%); /* fades to bottom */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+
+    &.hidden {
+        opacity: 0;
+        transition: ease 2s;
+    }
+    
+    &.visible {
+        opacity: 1;
+        transition: ease .5s;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
 }

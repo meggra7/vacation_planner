@@ -11,7 +11,7 @@ $font-family-caveat: 'Caveat', cursive; // Handwriting
 $rounded-corners: 4px;
 
 body {
-    background-color: azure;
+    background-color: linen;
     color: $color-text-primary;
 }
 
@@ -20,7 +20,7 @@ main {
     font-weight: 300;
     font-size: 18px;
     min-width: 320px;
-    margin: 0 5%;
+    margin: 10em 5% 0;
 }
 
 h1 {

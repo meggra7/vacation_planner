@@ -50,6 +50,7 @@ import u00d from './media/weather-icons/u00d.png';
 
 
 /* Set initial images */
+document.getElementById('loading-indicator').setAttribute('src', loadingIndicator);
 document.getElementById('progress-tracker-one').setAttribute('src', stepCompleted);
 document.getElementById('progress-tracker-two').classList.add('current');
 document.getElementById('progress-tracker-two').setAttribute('src', airplane);

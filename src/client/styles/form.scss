@@ -81,6 +81,11 @@ $progress-dots-height: 5px;
 
             #state {
                 grid-area: stateInput;
+                text-transform: uppercase;
+
+                &::placeholder {
+                    text-transform: none;
+                }
             }
 
             #country-label {
@@ -135,6 +140,21 @@ $progress-dots-height: 5px;
             font-size: .75em;
 
         }
+
+        &.visible {
+            display: block;
+        }
+    }
+
+    #error-message {
+        display: none; /* Not visible by default */
+        border: 1px solid darkred;
+        border-radius: $rounded-corners;
+        background-color: mistyrose;
+        color: darkred;
+        margin-bottom: 2em;
+        padding: 16px;
+        text-align: left;
 
         &.visible {
             display: block;

@@ -1,4 +1,22 @@
-/* Import functions*/
+/* Import SETUP functions*/
+import {
+    populateCountrySelections,
+} from './js/setup.js';
+export {
+    populateCountrySelections,
+};
+
+/* Import UTILS functions*/
+import {
+    getTodaysDate,
+    getDateAsNumber,
+} from './js/utils.js';
+export {
+    getTodaysDate,
+    getDateAsNumber,
+};
+
+/* Import LAYOUT functions*/
 import {
     showHeader,
     hideHeader,
@@ -12,15 +30,26 @@ export {
     scrollTo,
 };
 
+/* Import FORM functions */
 import {
     backButtonPress,
     forwardButtonPress,
-    goToStep
+    goToStep,
+    displayErrorMessage,
+    validateCityForErrors,
+    checkForStateRequirement,
+    validateDatesForErrors,
+    validateItineraryForErrors,
 } from './js/form.js';
 export {
     backButtonPress,
     forwardButtonPress,
-    goToStep
+    goToStep,
+    displayErrorMessage,
+    validateCityForErrors,
+    checkForStateRequirement,
+    validateDatesForErrors,
+    validateItineraryForErrors,
 }
 
 /* Import all stylesheets */
@@ -64,13 +93,13 @@ export {
 }
 
 
-
+populateCountrySelections();
 
 /* Set initial images */
 document.getElementById('loading-indicator').setAttribute('src', loadingIndicator);
-document.getElementById('progress-tracker-one').setAttribute('src', stepCompleted);
-document.getElementById('progress-tracker-two').classList.add('current');
-document.getElementById('progress-tracker-two').setAttribute('src', airplane);
+document.getElementById('progress-tracker-one').setAttribute('src', airplane);
+document.getElementById('progress-tracker-one').classList.add('current');
+document.getElementById('progress-tracker-two').setAttribute('src', stepUpcoming);
 document.getElementById('progress-tracker-three').setAttribute('src', stepUpcoming);
 document.getElementById('progress-tracker-four').setAttribute('src', stepUpcoming);
 
@@ -111,4 +140,7 @@ document.querySelector('header').addEventListener('click', scrollTo);
 // Add listeners to form buttons
 document.querySelector('#back-button').addEventListener('click', backButtonPress);
 document.querySelector('#forward-button').addEventListener('click', forwardButtonPress);
+
+// Add listener to country dropdown
+document.querySelector('#country').addEventListener('change', checkForStateRequirement);
 

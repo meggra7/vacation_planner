@@ -1,3 +1,5 @@
+import { stepCompleted } from "..";
+
 const mProgressTrackerContainer = document.getElementById('progress-tracker');
 const mProgressTrackerOne = document.getElementById('progress-tracker-one');
 const mProgressTrackerTwo = document.getElementById('progress-tracker-two');
@@ -8,27 +10,66 @@ const mStepTwo = document.getElementById('step-two');
 const mStepThree = document.getElementById('step-three');
 const mStepFour = document.getElementById('step-four');
 const mLoadingIndicator = document.getElementById('loading-indicator');
+const mErrorMessage = document.getElementById('error-message');
 const mBackButton = document.getElementById('back-button');
 const mForwardButton = document.getElementById('forward-button');
-let mCurrentStep = 2; // DEBUGGING
+let mCurrentStep = 1;
 
 
 function backButtonPress() {
     console.log(':: backButtonPress ::')
-    mCurrentStep -= 1;
 
+    // Decrease step count
+    mCurrentStep -= 1;
     goToStep(mCurrentStep);
 }
 
 function forwardButtonPress() {
     console.log(':: forwardButtonPress ::')
-    mCurrentStep += 1;
 
-    goToStep(mCurrentStep);
+    switch(mCurrentStep) {
+        case 1:
+            const cityErrors = validateCityForErrors();
+            if (cityErrors.length === 0) {
+                mCurrentStep += 1;
+                goToStep(mCurrentStep);
+            } else {
+                displayErrorMessage(cityErrors);
+            }
+            break;
+        case 2:
+            // Otherwise increase step count
+            mCurrentStep += 1;
+            goToStep(mCurrentStep);
+            break;
+        case 3:
+            const dateErrors = validateDatesForErrors();
+            if (dateErrors.length === 0) {
+                mCurrentStep += 1;
+                goToStep(mCurrentStep);
+            } else {
+                displayErrorMessage(dateErrors);
+            }
+            break;
+        case 4:
+            const itineraryErrors = validateItineraryForErrors();
+            if (itineraryErrors.length === 0) {
+                alert('Submitting trip!')
+            } else {
+                displayErrorMessage(itineraryErrors);
+            }
+            break;
+        default:
+            console.log(`ERROR: Unable to process forward button press`);
+            return;            
+    }
 }
 
 function goToStep(stepNumber) {
     console.log(`:: goToStep ${stepNumber} ::`)
+
+    // Hide any previous errors
+    mErrorMessage.classList.remove('visible');
 
     // Hide progress tracker to update
     mProgressTrackerContainer.classList.add('hidden');
@@ -119,7 +160,7 @@ function goToStep(stepNumber) {
 
             break;
         default:
-            console.log(`ERROR: Unable to go to step number ${stepNumber}`)
+            console.log(`ERROR: Unable to go to step number ${stepNumber}`);
 
             // Unable to make any changes.  Redisplay progress tracker and
             // exit method to stay at current state.
@@ -149,9 +190,126 @@ function goToStep(stepNumber) {
 
 }
 
+function displayErrorMessage(errors) {
+
+    // Initialize the error message
+    let errorMessage = 'Please correct the following errors to continue:<br>';
+
+    // Iterate through each error found and append to the message
+    for (let error of errors) {
+        errorMessage = errorMessage + '<br>&bull; ' + error;
+    };
+
+    // Update error text
+    mErrorMessage.innerHTML = errorMessage;
+
+    // Display message to user
+    mErrorMessage.classList.add('visible');
+}
+
+/* Validate form information */
+function validateCityForErrors() {
+
+    // Initiate error holder
+    let errors = [];
+
+    // Get references to all fields
+    const city = document.querySelector('#city').value.trim();
+    const state = document.querySelector('#state').value;
+    const country = document.querySelector('#country').value;
+
+    console.log(`Data entered: ${city}, ${state}, ${country}`);
+
+    // Make sure city isn't empty
+    if (city === '') {
+        errors.push('Enter city name');
+    }
+
+    // If country is US, make sure state is entered
+    if (country === 'us') {
+        if (state === '') {
+            errors.push('Enter state (abbreviation)')
+        }
+    }
+
+    return errors;    
+}
+
+function checkForStateRequirement() {
+    const selectedCountry = document.querySelector('#country').value;
+    const stateInput = document.querySelector('#state');
+
+    if (selectedCountry === 'US') {
+        stateInput.removeAttribute('disabled');
+    } else {
+        stateInput.setAttribute('disabled', true);
+        stateInput.value = '';
+    }
+}
+
+function validateDatesForErrors() {
+
+    // Initiate error holder
+    let errors = [];
+
+    // Make sure valid from date
+    let fromDate = document.querySelector('#date-from').value;
+    if (fromDate) {
+        fromDate = new Date(document.querySelector('#date-from').value);
+        fromDate = Client.getDateAsNumber(fromDate);
+
+        // Make sure from date is also after today
+        const today = Client.getTodaysDate();
+        if (fromDate <= today) {
+            errors.push('\'From\' date must be after today\'s date');
+        }
+
+    } else {
+        errors.push('Enter a \'from\' date');
+    }
+
+    // Make sure valid to date
+    let toDate = document.querySelector('#date-to').value;
+    if (toDate) {
+        toDate = new Date(document.querySelector('#date-to').value);
+        toDate = Client.getDateAsNumber(toDate);
+        
+        // Make sure to date is same or greater than from date
+        if (fromDate && toDate < fromDate) {
+            errors.push('\'To\' date must be same as or after \'from\' date');
+        }
+
+    } else {
+        errors.push('Enter a \'to\' date');
+    }
+
+    return errors;
+}
+
+function validateItineraryForErrors() {
+
+    // Initiate error holder
+    let errors = [];
+
+    // Make sure user entered itinerary text
+    const itinerary = document.querySelector('#itinerary-input').value;
+    if (itinerary === '') {
+        errors.push('Enter your itinerary');
+    }
+
+    return errors;
+
+}
+
+
 export {
     backButtonPress,
     forwardButtonPress,
-    goToStep
+    goToStep,
+    displayErrorMessage,
+    validateCityForErrors,
+    checkForStateRequirement,
+    validateDatesForErrors,
+    validateItineraryForErrors,
 }
 

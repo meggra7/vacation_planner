@@ -19,7 +19,7 @@
                 <h2>Add new trip</h2>
                 <div class='card'>
                     <div id='progress-tracker'>
-                        <img id='progress-tracker-one' src='../media/airplane_32dp_777.png'>
+                        <img id='progress-tracker-one'>
                         <span></span>
                         <img id='progress-tracker-two'>
                         <span></span>
@@ -28,7 +28,7 @@
                         <img id='progress-tracker-four'>
                     </div>
                     <img id='loading-indicator' alt='loading...'>
-                    <form id='step-one'>
+                    <form id='step-one' class='visible'>
                         <h3>Where are you going?</h3>
                         <div id='step-one-container'>
                             <label id='city-label' for='city'>City:</label>
@@ -40,7 +40,7 @@
                             </select>
                         </div>
                     </form>
-                    <form id='step-two' class='visible'>
+                    <form id='step-two'>
                         <h3>Please confirm your destination:</h3>
                         <input type="radio" name="destination" value="one">
                         <label for="male">New York, NY</label><br><br>
@@ -60,6 +60,9 @@
                         <h3>What do you plan to do there?</h3>
                         <textarea id='itinerary-input' rows='5' placeholder="Enter your itinerary or other travel plans here"></textarea>
                     </form>
+                    <div id='error-message'>
+                        <p>Error message here</p>
+                    </div>
                     <div id='button-container'>
                         <button id='back-button'>Back</button>
                         <button id='forward-button'>Next</button>

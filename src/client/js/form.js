@@ -223,14 +223,12 @@ function validateCityForErrors() {
     // Make sure city isn't empty
     if (city === '') {
         errors.push('Enter city name');
-    }
+    };
 
     // If country is US, make sure state is entered
-    if (country === 'us') {
-        if (state === '') {
-            errors.push('Enter state (abbreviation)')
-        }
-    }
+    if (country === 'US' && state === '') {
+        errors.push('Enter state (abbreviation)')
+    };
 
     return errors;    
 }

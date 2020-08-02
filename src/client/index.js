@@ -54,11 +54,9 @@ export {
 
 /* Import API functions */
 import {
-    displayApiError,
     getCity,
 } from './js/api.js';
 export {
-    displayApiError,
     getCity,
 }
 

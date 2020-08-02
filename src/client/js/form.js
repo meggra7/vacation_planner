@@ -14,6 +14,7 @@ const mErrorMessage = document.getElementById('error-message');
 const mBackButton = document.getElementById('back-button');
 const mForwardButton = document.getElementById('forward-button');
 let mCurrentStep = 1;
+let mEntryBuilder;
 
 
 function backButtonPress() {
@@ -201,12 +202,43 @@ function displayValidationError(errors) {
     mErrorMessage.classList.add('visible');
 }
 
+function displayApiError() {
+
+    switch (mCurrentStep) {
+        case 1:
+
+            // Dismiss loading indicator
+            mLoadingIndicator.classList.remove('visible');
+
+            // Re-display step 1
+            mStepOne.classList.add('visible');
+
+            // Update error text
+            mErrorMessage.textContent = 'No results found. Please make sure you entered a valid city and review for any spelling errors.  Otherwise check your internet connection and try again.';
+
+            // Display message to user
+            mErrorMessage.classList.add('visible');
+            
+            break;
+
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default:
+            
+    }
+}
+
 function displayLoadingIndicator() {
 
     mStepOne.classList.remove('visible');
     mStepTwo.classList.remove('visible');
     mStepThree.classList.remove('visible');
     mStepFour.classList.remove('visible');
+    mErrorMessage.classList.remove('visible');
 
     mLoadingIndicator.classList.add('visible');
 }
@@ -224,15 +256,33 @@ function processStepOne() {
     const cityErrors = validateCityForErrors(city, state, country);
     if (cityErrors.length === 0) {
 
-        // No errors, ok to process data
+        // No validation errors, ok to process data
+        // Display loading indicator
         displayLoadingIndicator();
+
+        // Request data
         Client.getCity(city, state, country)
         .then(response => {
-            console.log(response);
 
-            // mCurrentStep += 1;
-            // goToStep(mCurrentStep);
-        });  
+            // Make sure response not empty
+            if (response.length > 0) {
+
+                // Begin building our entry data
+                mEntryBuilder = response;
+                console.log(JSON.stringify(response));
+
+                // Move to next step
+                mCurrentStep += 1;
+                goToStep(mCurrentStep);
+
+            } else {
+                displayApiError();
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            displayApiError();
+        });
     } else {
         displayValidationError(cityErrors);
     };

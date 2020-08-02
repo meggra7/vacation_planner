@@ -102,7 +102,7 @@ async function getAllMatchesForCountry(req) {
         return filteredData;
 
     } catch (error) {
-        console.log('error', error);
+        console.log(error);
     }
 }
 
@@ -117,7 +117,7 @@ async function getFirstMatchForState(req) {
     const {city, state} = req;
 
     // Build url
-    const url = `http://api.geonames.org/searchJSON?username=${process.env.API_KEY_GEONAMES}&type=json&maxRows=100&name_equals=${encodeURI(city)}&admincode1=${state}`;
+    const url = `http://api.geonames.org/searchJSON?username=${process.env.API_KEY_GEONAMES}&type=json&maxRows=100&name_equals=${encodeURI(city)}&country=US&admincode1=${state}`;
     
     try {
 
@@ -140,7 +140,7 @@ async function getFirstMatchForState(req) {
         }];
 
     } catch (error) {
-        console.log('error', error);
+        console.log(error);
     }
 }
 

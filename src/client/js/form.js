@@ -33,9 +33,7 @@ function forwardButtonPress() {
             processStepOne();
             break;
         case 2:
-            // Otherwise increase step count
-            mCurrentStep += 1;
-            goToStep(mCurrentStep);
+            processStepTwo();
             break;
         case 3:
             const dateErrors = validateDatesForErrors();
@@ -248,12 +246,12 @@ function processStepOne() {
     // Collect data
     const city = document.querySelector('#city').value.trim();
     const state = document.querySelector('#state').value;
-    const country = document.querySelector('#country').value;
+    const countryAbbrev = document.querySelector('#country').value;
 
-    console.log(`Data entered: ${city}, ${state}, ${country}`);
+    console.log(`Data entered: ${city}, ${state}, ${countryAbbrev}`);
 
     // Validate data
-    const cityErrors = validateCityForErrors(city, state, country);
+    const cityErrors = validateCityForErrors(city, state, countryAbbrev);
     if (cityErrors.length === 0) {
 
         // No validation errors, ok to process data
@@ -261,15 +259,18 @@ function processStepOne() {
         displayLoadingIndicator();
 
         // Request data
-        Client.getCity(city, state, country)
-        .then(response => {
+        Client.getCity(city, state, countryAbbrev)
+        .then(resultsList => {
 
             // Make sure response not empty
-            if (response.length > 0) {
+            if (resultsList.length > 0) {
 
                 // Begin building our entry data
-                mEntryBuilder = response;
-                console.log(JSON.stringify(response));
+                mEntryBuilder = {resultsList};
+                console.log(JSON.stringify(mEntryBuilder));
+
+                // Populate step two with our results list
+                populateStepTwo();
 
                 // Move to next step
                 mCurrentStep += 1;
@@ -289,7 +290,7 @@ function processStepOne() {
 }
 
 /* Validate form information */
-function validateCityForErrors(city, state, country) {
+function validateCityForErrors(city, state, countryAbbrev) {
 
     // Initiate error holder
     let errors = [];
@@ -300,11 +301,36 @@ function validateCityForErrors(city, state, country) {
     };
 
     // If country is US, make sure state is entered
-    if (country === 'US' && state === '') {
+    if (countryAbbrev === 'US' && state === '') {
         errors.push('Enter state (abbreviation)')
     };
 
     return errors;    
+}
+
+function populateStepTwo() {
+
+    // Initialize inner HTML by adding header
+    let innerHtml = '<h3>Please confirm your destination:</h3>';
+
+    // Iterate through each result and add a radio button option
+    for (let index = 0; index < mEntryBuilder.resultsList.length; index++) {
+
+        const currentLocation = mEntryBuilder.resultsList[index];
+        const displayName = `${currentLocation.city}, ${currentLocation.state}, ${currentLocation.country}`;
+
+        innerHtml += `<input type="radio" name="destination" value="${index}">
+            <label>${displayName}</label><br><br>`;
+            // <input type="radio" name="destination" value="one">
+            // <label for="male">New York, NY</label><br><br>
+    }
+
+    mStepTwo.innerHTML = innerHtml;
+
+    // If only one option, go ahead and check it by default
+    if (mEntryBuilder.resultsList.length === 1) {
+        mStepTwo.getElementsByTagName('input')[0].checked = true;
+    }
 }
 
 function checkForStateRequirement() {
@@ -319,7 +345,45 @@ function checkForStateRequirement() {
     }
 }
 
+function processStepTwo() {
+    console.log(':: processStepTwo ::')
+    
+    const destinationErrors = validateDestinationSelectionForErrors();
+    if (destinationErrors.length === 0) {
 
+        // No validation errors, ok to process data
+        // Display loading indicator
+        displayLoadingIndicator();
+
+    } else {
+        displayValidationError(destinationErrors);
+    };
+}
+
+function validateDestinationSelectionForErrors() {
+
+    console.log(':: validateDestinationSelectionForErrors ::')
+
+    // Initiate error holder
+    let errors = [];
+
+    const destinationOptions = document.getElementsByName('destination');
+
+    let noDestination = true;
+    let index = 0;
+    while (noDestination && index < destinationOptions.length) {
+        if (destinationOptions[index].checked) {
+            noDestination = false;
+        }
+        index++;
+    }
+
+    if (noDestination) {
+        errors.push('Confirm a destination');
+    }
+
+    return errors;
+}
 
 function validateDatesForErrors() {
 

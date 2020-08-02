@@ -36,7 +36,7 @@ app.post('/city', (req, res) => {
 
     // Make API request
     let response;
-    if (location.country === 'US') {
+    if (location.countryAbbrev === 'US') {
         // If domestic, we already have state and assumed
         // safe to return first result
         getFirstMatchForState(location)
@@ -61,10 +61,10 @@ app.post('/city', (req, res) => {
 async function getAllMatchesForCountry(req) {
 
     // Get url parameters we need
-    const {city, country} = req;
+    const {city, countryAbbrev} = req;
 
     // Build url
-    const url = `http://api.geonames.org/searchJSON?username=${process.env.API_KEY_GEONAMES}&type=json&maxRows=100&name_equals=${encodeURI(city)}&country=${country}`;
+    const url = `http://api.geonames.org/searchJSON?username=${process.env.API_KEY_GEONAMES}&type=json&maxRows=100&name_equals=${encodeURI(city)}&country=${countryAbbrev}`;
 
     try {
 
@@ -90,10 +90,11 @@ async function getAllMatchesForCountry(req) {
                 // If not found, add to our lists
                 statesFound.add(currentState);
                 filteredData.push({
-                    name: location.name,
+                    city: location.name,
                     stateAbbrev: location.adminCode1,
-                    stateName: location.adminName1,
+                    state: location.adminName1,
                     country: location.countryName,
+                    countryAbbrev,
                 });
 
             } // else ignore
@@ -114,10 +115,10 @@ async function getAllMatchesForCountry(req) {
 async function getFirstMatchForState(req) {
 
     // Get url parameters we need
-    const {city, state} = req;
+    const {city, state, countryAbbrev} = req;
 
     // Build url
-    const url = `http://api.geonames.org/searchJSON?username=${process.env.API_KEY_GEONAMES}&type=json&maxRows=100&name_equals=${encodeURI(city)}&country=US&admincode1=${state}`;
+    const url = `http://api.geonames.org/searchJSON?username=${process.env.API_KEY_GEONAMES}&type=json&maxRows=100&name_equals=${encodeURI(city)}&country=${countryAbbrev}&admincode1=${state}`;
     
     try {
 
@@ -132,8 +133,8 @@ async function getFirstMatchForState(req) {
         // Get first match and return object
         const firstMatch = locationData.geonames[0];
         return [{
-            name: firstMatch.name,
-            stateName: firstMatch.adminName1,
+            city: firstMatch.name,
+            state: firstMatch.adminName1,
             country: firstMatch.countryName,
             lat: firstMatch.lat,
             lon: firstMatch.lng,

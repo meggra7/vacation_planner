@@ -35,7 +35,7 @@ import {
     backButtonPress,
     forwardButtonPress,
     goToStep,
-    displayErrorMessage,
+    displayValidationError,
     validateCityForErrors,
     checkForStateRequirement,
     validateDatesForErrors,
@@ -45,11 +45,21 @@ export {
     backButtonPress,
     forwardButtonPress,
     goToStep,
-    displayErrorMessage,
+    displayValidationError,
     validateCityForErrors,
     checkForStateRequirement,
     validateDatesForErrors,
     validateItineraryForErrors,
+}
+
+/* Import API functions */
+import {
+    displayApiError,
+    getCity,
+} from './js/api.js';
+export {
+    displayApiError,
+    getCity,
 }
 
 /* Import all stylesheets */

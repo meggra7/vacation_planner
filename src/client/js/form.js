@@ -29,13 +29,7 @@ function forwardButtonPress() {
 
     switch(mCurrentStep) {
         case 1:
-            const cityErrors = validateCityForErrors();
-            if (cityErrors.length === 0) {
-                mCurrentStep += 1;
-                goToStep(mCurrentStep);
-            } else {
-                displayErrorMessage(cityErrors);
-            }
+            processStepOne();
             break;
         case 2:
             // Otherwise increase step count
@@ -48,7 +42,7 @@ function forwardButtonPress() {
                 mCurrentStep += 1;
                 goToStep(mCurrentStep);
             } else {
-                displayErrorMessage(dateErrors);
+                displayValidationError(dateErrors);
             }
             break;
         case 4:
@@ -56,7 +50,7 @@ function forwardButtonPress() {
             if (itineraryErrors.length === 0) {
                 alert('Submitting trip!')
             } else {
-                displayErrorMessage(itineraryErrors);
+                displayValidationError(itineraryErrors);
             }
             break;
         default:
@@ -190,7 +184,7 @@ function goToStep(stepNumber) {
 
 }
 
-function displayErrorMessage(errors) {
+function displayValidationError(errors) {
 
     // Initialize the error message
     let errorMessage = 'Please correct the following errors to continue:<br>';
@@ -207,18 +201,48 @@ function displayErrorMessage(errors) {
     mErrorMessage.classList.add('visible');
 }
 
-/* Validate form information */
-function validateCityForErrors() {
+function displayLoadingIndicator() {
 
-    // Initiate error holder
-    let errors = [];
+    mStepOne.classList.remove('visible');
+    mStepTwo.classList.remove('visible');
+    mStepThree.classList.remove('visible');
+    mStepFour.classList.remove('visible');
 
-    // Get references to all fields
+    mLoadingIndicator.classList.add('visible');
+}
+
+function processStepOne() {
+
+    // Collect data
     const city = document.querySelector('#city').value.trim();
     const state = document.querySelector('#state').value;
     const country = document.querySelector('#country').value;
 
     console.log(`Data entered: ${city}, ${state}, ${country}`);
+
+    // Validate data
+    const cityErrors = validateCityForErrors(city, state, country);
+    if (cityErrors.length === 0) {
+
+        // No errors, ok to process data
+        displayLoadingIndicator();
+        Client.getCity(city, state, country)
+        .then(response => {
+            console.log(response);
+
+            // mCurrentStep += 1;
+            // goToStep(mCurrentStep);
+        });  
+    } else {
+        displayValidationError(cityErrors);
+    };
+}
+
+/* Validate form information */
+function validateCityForErrors(city, state, country) {
+
+    // Initiate error holder
+    let errors = [];
 
     // Make sure city isn't empty
     if (city === '') {
@@ -244,6 +268,8 @@ function checkForStateRequirement() {
         stateInput.value = '';
     }
 }
+
+
 
 function validateDatesForErrors() {
 
@@ -304,7 +330,7 @@ export {
     backButtonPress,
     forwardButtonPress,
     goToStep,
-    displayErrorMessage,
+    displayValidationError,
     validateCityForErrors,
     checkForStateRequirement,
     validateDatesForErrors,

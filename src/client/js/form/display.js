@@ -33,13 +33,12 @@ function newTripCard(trip) {
     // Create card holder
     let tripCard = document.createElement('div');
     tripCard.classList.add('card');
-    tripCard.textContent = `New card for ${trip.city}`;
 
     // Add photo
     tripCard.append(newImage(trip.img));
 
     // Add basic info
-    // tripCard.append(BASIC_INFO_ELEMENT);
+    tripCard.append(newBasicInfo(trip.city, trip.state, trip.country, trip.fromDate, trip.toDate));
 
     // Add itinerary
     // tripCard.append(ITINERARY_ELEMENT);
@@ -61,4 +60,40 @@ function newImage(image) {
     imgElement.setAttribute('alt', image.alt);
 
     return imgElement;
+}
+
+function newBasicInfo(city, state, country, fromDate, toDate) {
+
+    // Initialize city to display
+    let cityNameToDisplay = '';
+
+    // If domestic, will display city and state
+    if (country === 'United States') {
+        cityNameToDisplay = `${city}, ${state}`;
+    } else {
+        // International will display city and country
+        cityNameToDisplay = `${city}, ${country}`;
+    }
+
+    // Get long versions of from and to dates
+    const longFromDate = Client.getLongDate(fromDate);
+    const longToDate = Client.getLongDate(toDate);
+
+    // Build date display
+    const dateToDisplay = `${longFromDate} - ${longToDate}`;
+
+    // Get days from today
+    const daysFromToday = Client.getNumberOfDaysFromToday(fromDate);
+
+    // Build countdown display
+    const countdownToDisplay = `${daysFromToday} days away`;
+
+    // Create paragraph element of class basic-info
+    let pElement = document.createElement('p');
+    pElement.classList.add('basic-info');
+    
+    // Set inner HTML using text displays found above
+    pElement.innerHTML = `${cityNameToDisplay}<br>${dateToDisplay}<br>${countdownToDisplay}`;
+
+    return pElement;
 }

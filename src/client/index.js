@@ -11,11 +11,15 @@ import {
     getTodaysDate,
     getDateAsNumber,
     getDateRangeLength,
+    getNumberOfDaysFromToday,
+    getLongDate,
 } from './js/utils.js';
 export {
     getTodaysDate,
     getDateAsNumber,
     getDateRangeLength,
+    getNumberOfDaysFromToday,
+    getLongDate,
 };
 
 /* Import LAYOUT functions*/

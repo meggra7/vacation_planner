@@ -1,7 +1,7 @@
 /**
  * Analyze and process data for step one (enter destination city and country) in order to proceed to step two.
  */
-function processStepOne() {
+export function processStepOne() {
 
     console.log(':: processStepOne ::')
 
@@ -139,8 +139,4 @@ function populateStepTwo() {
     if (window.entryBuilder.resultsList.length === 1) {
         document.getElementById('step-two').getElementsByTagName('input')[0].checked = true;
     }
-}
-
-export {
-    processStepOne,
 }

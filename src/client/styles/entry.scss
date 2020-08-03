@@ -21,7 +21,7 @@ $entry-text-margin: 8px 24px;
             object-fit: cover;
         }
 
-        #basic-info {
+        .basic-info {
             // border: 1px solid red;
             font-family: $font-family-caveat;
             font-size: 1.4em;
@@ -42,7 +42,7 @@ $entry-text-margin: 8px 24px;
             margin: $entry-text-margin;
         }
 
-        #weather {
+        .weather-display {
             // border: 1px solid red;
             margin: $entry-text-margin;
             display: flex;
@@ -94,8 +94,6 @@ $entry-text-margin: 8px 24px;
                     width: 100%;
                     object-fit: contain;
                 }
-
-
             }
         }
     }

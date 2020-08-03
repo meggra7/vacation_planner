@@ -1,7 +1,7 @@
 /**
  * Analyze and process data for step two (confirm destination from results list) in order to proceed to step three.
  */
-function processStepTwo() {
+export function processStepTwo() {
 
     console.log(':: processStepTwo ::')
     
@@ -55,8 +55,4 @@ function getSelectedDestination() {
     }
 
     return selection;
-}
-
-export {
-    processStepTwo,
 }

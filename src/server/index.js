@@ -51,6 +51,82 @@ app.post('/weather', (req, res) => {
     .then(response => res.send(response));
 });
 
+app.post('/image', (req, res) => {
+
+    // Get request object
+    const location = req.body;
+    console.log(location);
+    const {city, state, country} = location;
+
+    // Pre-define placeholder image in case needed later
+    const placeholderImage = {
+        src: 'https://pixabay.com/get/57e1d14a485aa514f1dc8460962930791537dbe3524c704c7c297fdc954ec050_640.jpg',
+        alt: 'luggage, vacations, travel',
+        attr: 'stux',
+    };
+
+    // For domestic, include attempt query with state
+    if (country === 'United States') {
+        getImage(encodeURI(`${city} ${state}`))
+        .then(response => {
+
+            // Check if response is empty
+            if (response.total === 0) {
+
+                // Try again with just the state
+                getImage(encodeURI(state))
+                .then(response => {
+
+                    // Check if response is empty
+                    if (response.total === 0) {
+
+                        // Send placeholder image as final option
+                        res.send(placeholderImage);
+
+                    } else {
+
+                        // Else, not empty. Send state response
+                        res.send(parseImageResponse(response));
+                    }
+                });
+            } else {
+
+                // Else, not empty. Send city + state response
+                res.send(parseImageResponse(response));
+            }
+        });
+    } else {
+
+        // For international, don't include state in query
+        getImage(encodeURI(`${city} ${country}`))
+        .then(response => {
+
+            // Check if response is empty
+            if (response.total === 0) {
+
+                // Try again with just the country
+                getImage(encodeURI(country))
+                .then(response => {
+
+                    // Check if response is empty
+                    if (response.total === 0) {
+
+                        // Send placeholder image as final option
+                        res.send(placeholderImage);
+
+                    } else {
+                        // Else, not empty. Send country response
+                        res.send(parseImageResponse(response));
+                    }
+                });  
+            } else {
+                // Else, not empty. Send city + country response
+                res.send(parseImageResponse(response));
+            }
+        });
+    }
+});
+
 
 /* EXTERNAL api requests */
 
@@ -151,10 +227,22 @@ async function getWeatherForecast(lat, lon) {
         for (let day of weatherData.data) {
 
             const date = day.valid_date;
-            const low = day.low_temp.toFixed(0);
-            const high = day.high_temp.toFixed(0);
             const code = day.weather.code;
             const description = day.weather.description;
+
+            let low = '00';
+            if (day.low_temp !== null) {
+                low = day.low_temp.toFixed(0);
+            } else if (day.min_temp !== null) {
+                low = day.min_temp.toFixed(0);
+            }
+
+            let high = '00';
+            if (day.high_temp !== null) {
+                high = day.high_temp.toFixed(0);
+            } else if (day.max_temp !== null) {
+                high = day.max_temp.toFixed(0);
+            }
 
             const singleDayForecast = {date, low, high, code, description};
 
@@ -167,3 +255,37 @@ async function getWeatherForecast(lat, lon) {
         console.log(error);
     }
 }
+
+async function getImage(query) {
+
+    console.log(`:: getImage for query ${query}`);
+
+    // Build url
+    const url = `https://pixabay.com/api/?key=${process.env.API_KEY_PIXABAY}&q=${query}&image_type=photo&safesearch=true`;
+
+    try {
+        // Request raw data
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+
+        // Convert raw data to JSON
+        return await response.json();
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/* Helper methods */
+function parseImageResponse(response) {
+
+    const imageData = response.hits[0];
+    return {
+        src: imageData.webformatURL,
+        alt: imageData.tags,
+        attr: imageData.user,
+    };
+}
+
+

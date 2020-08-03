@@ -1,7 +1,7 @@
 /**
  * Analyze and process data for step three (enter dates) in order to proceed to step four.
  */
-function processStepThree() {
+export function processStepThree() {
 
     // First get reference to 'from' and 'to' dates
     const fromDate = document.querySelector('#date-from').value;
@@ -66,8 +66,4 @@ function validateDatesForErrors(fromDate, toDate) {
     }
 
     return errors;
-}
-
-export {
-    processStepThree,
 }

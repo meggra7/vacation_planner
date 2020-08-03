@@ -108,7 +108,6 @@ function populateCountrySelections() {
         {name: 'Guinea-Bissau', code: 'GW'},
         {name: 'Guyana', code: 'GY'},
         {name: 'Haiti', code: 'HT'},
-        {name: 'Heard Island and McDonald Islands', code: 'HM'},
         {name: 'Honduras', code: 'HN'},
         {name: 'Hong Kong', code: 'HK'},
         {name: 'Hungary', code: 'HU'},

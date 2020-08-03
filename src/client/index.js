@@ -53,6 +53,9 @@ import {
 import {
     processStepFour,
 } from './js/form/step-four.js';
+import {
+    saveEntry,
+} from './js/form/entry.js';
 export {
     backButtonPress,
     forwardButtonPress,
@@ -64,7 +67,10 @@ export {
     processStepTwo,
     processStepThree,
     processStepFour,
+    saveEntry,
 }
+
+/* Import ENTRY */
 
 /* Import all stylesheets */
 import './styles/reset.scss';
@@ -86,24 +92,35 @@ import c02d from './media/weather-icons/c02d.png';
 import c03d from './media/weather-icons/c03d.png';
 import c04d from './media/weather-icons/c04d.png';
 import d01d from './media/weather-icons/d01d.png';
-import f01d from './media/weather-icons/f01d.png';
 import r01d from './media/weather-icons/r01d.png';
 import r03d from './media/weather-icons/r03d.png';
 import r05d from './media/weather-icons/r05d.png';
-import r06d from './media/weather-icons/r06d.png';
 import s01d from './media/weather-icons/s01d.png';
 import s02d from './media/weather-icons/s02d.png';
-import s04d from './media/weather-icons/s04d.png';
 import s05d from './media/weather-icons/s05d.png';
 import s06d from './media/weather-icons/s06d.png';
 import t01d from './media/weather-icons/t01d.png';
 import t04d from './media/weather-icons/t04d.png';
 import u00d from './media/weather-icons/u00d.png';
-
 export {
     airplane,
     stepUpcoming,
-    stepCompleted
+    stepCompleted,
+    a01d,
+    c01d,
+    c02d,
+    c03d,
+    c04d,
+    d01d,
+    r01d,
+    r03d,
+    r05d,
+    s01d,
+    s02d,
+    s05d,
+    s06d,
+    t01d,
+    t04d,
 }
 
 

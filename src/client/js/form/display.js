@@ -41,7 +41,7 @@ function newTripCard(trip) {
     tripCard.append(newBasicInfo(trip.city, trip.state, trip.country, trip.fromDate, trip.toDate));
 
     // Add itinerary
-    // tripCard.append(ITINERARY_ELEMENT);
+    tripCard.append(newItinerary(trip.itinerary));
 
     // Add weather
     // tripCard.append(WEATHER_ELEMENT);
@@ -96,4 +96,27 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
     pElement.innerHTML = `${cityNameToDisplay}<br>${dateToDisplay}<br>${countdownToDisplay}`;
 
     return pElement;
+}
+
+function newItinerary(itinerary) {
+
+    // Create a fragment to hold our itinerary
+    let itineraryFragment = document.createDocumentFragment();
+
+    // Create our itinerary header and add to our fragment
+    const headerElement = document.createElement('h3');
+    headerElement.textContent = 'Itinerary';
+    itineraryFragment.appendChild(headerElement);
+
+    // Create paragraph element of class itinerary-display
+    const pElement = document.createElement('p');
+    pElement.classList.add('itinerary-display');
+    
+    // Set the itinerary as the paragraph text
+    pElement.textContent = itinerary;
+
+    // Add the paragraph to our fragment
+    itineraryFragment.appendChild(pElement);
+
+    return itineraryFragment;
 }

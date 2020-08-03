@@ -1,4 +1,5 @@
 // Initialize app-global variables
+window.LOCAL_SERVER_BASE_URL = 'http://localhost:8081';
 window.entryBuilder = {}; // Will hold our entry to post
 window.currentStep = 1; // Always begin at step 1
 

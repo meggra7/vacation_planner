@@ -33,11 +33,21 @@ const server = app.listen(localHost, () => {
 /* Define post request to get city results data */
 app.post('/cities', (req, res) => {
 
-    // Get location object
+    // Get request object
     const location = req.body;
 
     // Make external API call and send response
     getCitiesByCountry(location)
+    .then(response => res.send(response));
+});
+
+app.post('/weather', (req, res) => {
+
+    // Get request object
+    const location = req.body;
+    console.log(location);
+
+    getWeatherForecast(location.lat, location.lon)
     .then(response => res.send(response));
 });
 
@@ -109,6 +119,49 @@ async function getCitiesByCountry(req) {
         });
         
         return filteredData;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/**
+ * Get 16-day weather forecast for specified latitude and longitude
+ * @param {*} lat 
+ * @param {*} lon 
+ * @returns Forecast array including date, high and low temps, weather condition code and description
+ */
+async function getWeatherForecast(lat, lon) {
+
+    // Build url
+    const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.API_KEY_WEATHERBIT}&units=I&lat=${lat}&lon=${lon}`;
+
+    try {
+
+        // Request raw data
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+
+        // Convert raw data to JSON
+        const weatherData = await response.json();
+
+        // Get just the parts we want for each day and add to forecast array
+        let forecast = [];
+        for (let day of weatherData.data) {
+
+            const date = day.valid_date;
+            const low = day.low_temp;
+            const high = day.high_temp;
+            const code = day.weather.code;
+            const description = day.weather.description;
+
+            const singleDayForecast = {date, low, high, code, description};
+
+            forecast.push(singleDayForecast);
+        }
+
+        return forecast;
 
     } catch (error) {
         console.log(error);

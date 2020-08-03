@@ -18,7 +18,9 @@ function processStepFour() {
         
         console.log(`Updated entry is ${JSON.stringify(window.entryBuilder)}`);
 
-        alert('Submitting trip!');
+        // Now request weather forecast
+        getWeather(window.entryBuilder.lat, window.entryBuilder.lon)
+        .then(response => console.log(response));
 
     } else {
         Client.displayValidationError(itineraryErrors);
@@ -36,6 +38,34 @@ function validateItineraryForErrors(itinerary) {
     }
 
     return errors;
+}
+
+/**
+ * Make request to local server to access API endpoints and request weather forecast
+ * @param {*} lat 
+ * @param {*} lon 
+ */
+async function getWeather(lat, lon) {
+
+    console.log(':: getWeather ::')
+
+    try {
+
+        // Make request to local server
+        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/weather`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({lat, lon}),
+        });
+
+        // Return results
+        return await response.json();
+
+    } catch (error) {
+        console.log(error);
+    };
 }
 
 export {

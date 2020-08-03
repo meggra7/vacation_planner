@@ -36,7 +36,7 @@ function newTripCard(trip) {
     tripCard.textContent = `New card for ${trip.city}`;
 
     // Add photo
-    // tripCard.append(IMAGE_ELEMENT);
+    tripCard.append(newImage(trip.img));
 
     // Add basic info
     // tripCard.append(BASIC_INFO_ELEMENT);
@@ -48,4 +48,17 @@ function newTripCard(trip) {
     // tripCard.append(WEATHER_ELEMENT);
 
     return tripCard;
+}
+
+function newImage(image) {
+
+    // Create image element of class location-photo
+    let imgElement = document.createElement('img');
+    imgElement.classList.add('location-photo');
+
+    // Set the source and alternate text
+    imgElement.setAttribute('src', image.src);
+    imgElement.setAttribute('alt', image.alt);
+
+    return imgElement;
 }

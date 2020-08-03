@@ -50,6 +50,12 @@ import {
 import {
     processStepTwo,
 } from './js/form/step-two.js';
+import {
+    processStepThree,
+} from './js/form/step-three.js';
+import {
+    processStepFour,
+} from './js/form/step-four.js';
 export {
     backButtonPress,
     forwardButtonPress,
@@ -59,6 +65,8 @@ export {
     displayLoadingIndicator,
     processStepOne,
     processStepTwo,
+    processStepThree,
+    processStepFour,
 }
 
 /* Import all stylesheets */

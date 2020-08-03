@@ -29,26 +29,15 @@ function forwardButtonPress() {
             Client.processStepTwo();
             break;
         case 3:
-            const dateErrors = validateDatesForErrors();
-            if (dateErrors.length === 0) {
-                window.currentStep += 1;
-                displayStep(window.currentStep);
-            } else {
-                displayValidationError(dateErrors);
-            }
+            Client.processStepThree();
             break;
         case 4:
-            const itineraryErrors = validateItineraryForErrors();
-            if (itineraryErrors.length === 0) {
-                alert('Submitting trip!')
-            } else {
-                displayValidationError(itineraryErrors);
-            }
+            Client.processStepFour();
             break;
         default:
             console.log(`ERROR: Unable to process forward button press`);
             return;            
-    }
+    };
 }
 
 function displayStep(stepNumber) {

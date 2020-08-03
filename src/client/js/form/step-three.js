@@ -1,10 +1,42 @@
-function validateDatesForErrors() {
+/**
+ * Analyze and process data for step three (enter dates) in order to proceed to step four.
+ */
+function processStepThree() {
+
+    // First get reference to 'from' and 'to' dates
+    const fromDate = document.querySelector('#date-from').value;
+    const toDate = document.querySelector('#date-to').value;
+
+    // First check for any validation errors
+    const dateErrors = validateDatesForErrors(fromDate, toDate);
+
+    // Make sure no errors in order to proceed
+    if (dateErrors.length === 0) {
+
+        // Update our entry builder with the dates
+        Object.assign(window.entryBuilder, {fromDate, toDate});
+        
+        console.log(`Updated entry is ${JSON.stringify(window.entryBuilder)}`);
+
+        // Move to next step
+        window.currentStep += 1;
+        Client.displayStep(window.currentStep);
+
+    } else {
+        Client.displayValidationError(dateErrors);
+    }
+}
+
+/**
+ * Check user input to make sure dates entered and in the future, relative to today and each other
+ * @returns List of errors, if any
+ */
+function validateDatesForErrors(fromDate, toDate) {
 
     // Initiate error holder
     let errors = [];
 
     // Make sure valid from date
-    let fromDate = document.querySelector('#date-from').value;
     if (fromDate) {
         fromDate = new Date(document.querySelector('#date-from').value);
         fromDate = Client.getDateAsNumber(fromDate);
@@ -20,7 +52,6 @@ function validateDatesForErrors() {
     }
 
     // Make sure valid to date
-    let toDate = document.querySelector('#date-to').value;
     if (toDate) {
         toDate = new Date(document.querySelector('#date-to').value);
         toDate = Client.getDateAsNumber(toDate);
@@ -35,4 +66,8 @@ function validateDatesForErrors() {
     }
 
     return errors;
+}
+
+export {
+    processStepThree,
 }

@@ -20,7 +20,9 @@ function processStepFour() {
 
         // Now request weather forecast
         getWeather(window.entryBuilder.lat, window.entryBuilder.lon)
-        .then(response => console.log(response));
+        .then(response => getTripForecast(response));
+
+        // TODO get icons and convert to html for display
 
     } else {
         Client.displayValidationError(itineraryErrors);
@@ -66,6 +68,62 @@ async function getWeather(lat, lon) {
     } catch (error) {
         console.log(error);
     };
+}
+
+/**
+ * Using currently available weather up to 16 days, compare to upcoming trip and get
+ * available forecasts if possible.  If starting date too far in future (greater than 16 days),
+ * will return the current forecast only.
+ * 
+ * @param {*} availableForecast 
+ * @returns Array of forecast for available days falling within trip date range.
+ */
+function getTripForecast(availableForecast) {
+
+    // First get our trip dates
+    const fromDate = window.entryBuilder.fromDate;
+    const toDate = window.entryBuilder.toDate;
+
+    // Next, cycle through the available forecast and see if our start date is found
+    let startDateNotFound = true;
+    let forecastIndex = 0;
+    while (startDateNotFound && forecastIndex < availableForecast.length) {
+
+        if (fromDate === availableForecast[forecastIndex].date) {
+            // Start date now found!
+            startDateNotFound = false;
+        } else {
+            // Only increase index if not found, since once it's found we want
+            // to save the forecast index where it was found as our starting point.  
+            // By switching the startDateNotFound to false that will trigger 
+            // exiting the loop anyway.
+            forecastIndex++;
+        }
+    };
+
+    // Initiate forecast display
+    let forecastToDisplay = [];
+    if (startDateNotFound) {
+        // Return today's forecast only
+        forecastToDisplay.push(availableForecast[0]);
+    } else {
+        // Get trip length 
+        let tripLength = Client.getDateRangeLength(fromDate, toDate);
+        console.log(`Trip length will be ${tripLength} days`);
+
+        // Iterate over the available forecast and add days to our display
+        // until we reach the end of the available forecast
+        // or we reach the end of our trip, whichever comes first
+        while (forecastIndex < availableForecast.length && tripLength > 0) {
+            forecastToDisplay.push(availableForecast[forecastIndex]);
+            forecastIndex++; // Increase forecast day
+            tripLength--; // Decrease number of trip days remaining
+        }
+    }
+
+    console.log(`Trip forecast (from available) is ${JSON.stringify(forecastToDisplay)}`);
+
+    return forecastToDisplay;
 }
 
 export {

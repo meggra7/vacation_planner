@@ -10,10 +10,12 @@ export {
 import {
     getTodaysDate,
     getDateAsNumber,
+    getDateRangeLength,
 } from './js/utils.js';
 export {
     getTodaysDate,
     getDateAsNumber,
+    getDateRangeLength,
 };
 
 /* Import LAYOUT functions*/

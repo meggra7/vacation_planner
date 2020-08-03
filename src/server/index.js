@@ -151,8 +151,8 @@ async function getWeatherForecast(lat, lon) {
         for (let day of weatherData.data) {
 
             const date = day.valid_date;
-            const low = day.low_temp;
-            const high = day.high_temp;
+            const low = day.low_temp.toFixed(0);
+            const high = day.high_temp.toFixed(0);
             const code = day.weather.code;
             const description = day.weather.description;
 

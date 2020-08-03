@@ -12,7 +12,22 @@ function getDateAsNumber(dateValueInMilliseconds) {
     return dateAsNumber;
 }
 
+function getDateRangeLength(fromDate, toDate) {
+
+    // First convert date strings into date objects in milliseconds
+    const fromDateInMilli = new Date(fromDate).getTime();
+    const toDateInMilli = new Date(toDate).getTime();
+
+    // Next, convert milliseconds to number of days
+    const fromDateAsNumber = getDateAsNumber(fromDateInMilli);
+    const toDateAsNumber = getDateAsNumber(toDateInMilli);
+
+    // Return date range (including) by subtracting from and to dates plus one to include
+    return toDateAsNumber - fromDateAsNumber + 1;
+}
+
 export {
     getTodaysDate,
     getDateAsNumber,
+    getDateRangeLength,
 };

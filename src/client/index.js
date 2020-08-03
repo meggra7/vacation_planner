@@ -1,3 +1,8 @@
+const LOCAL_SERVER_BASE_URL = 'http://localhost:8081';
+export {
+    LOCAL_SERVER_BASE_URL,
+}
+
 /* Import SETUP functions*/
 import {
     populateCountrySelections,
@@ -34,30 +39,26 @@ export {
 import {
     backButtonPress,
     forwardButtonPress,
-    goToStep,
+    displayStep,
     displayValidationError,
-    validateCityForErrors,
-    checkForStateRequirement,
-    validateDatesForErrors,
-    validateItineraryForErrors,
-} from './js/form.js';
+    displayApiError,
+    displayLoadingIndicator,
+} from './js/form/display.js';
+import {
+    processStepOne,
+} from './js/form/step-one.js';
+import {
+    processStepTwo,
+} from './js/form/step-two.js';
 export {
     backButtonPress,
     forwardButtonPress,
-    goToStep,
+    displayStep,
     displayValidationError,
-    validateCityForErrors,
-    checkForStateRequirement,
-    validateDatesForErrors,
-    validateItineraryForErrors,
-}
-
-/* Import API functions */
-import {
-    getCity,
-} from './js/api.js';
-export {
-    getCity,
+    displayApiError,
+    displayLoadingIndicator,
+    processStepOne,
+    processStepTwo,
 }
 
 /* Import all stylesheets */
@@ -148,7 +149,4 @@ document.querySelector('header').addEventListener('click', scrollTo);
 // Add listeners to form buttons
 document.querySelector('#back-button').addEventListener('click', backButtonPress);
 document.querySelector('#forward-button').addEventListener('click', forwardButtonPress);
-
-// Add listener to country dropdown
-document.querySelector('#country').addEventListener('change', checkForStateRequirement);
 

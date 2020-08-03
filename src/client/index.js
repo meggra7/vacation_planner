@@ -54,7 +54,7 @@ import {
     processStepFour,
 } from './js/form/step-four.js';
 import {
-    saveEntry,
+    processEntry,
 } from './js/form/entry.js';
 export {
     backButtonPress,
@@ -67,7 +67,7 @@ export {
     processStepTwo,
     processStepThree,
     processStepFour,
-    saveEntry,
+    processEntry,
 }
 
 /* Import ENTRY */

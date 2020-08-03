@@ -1,3 +1,6 @@
+/* Initialize blank data holder where we will store our entries */
+let appData = [];
+
 /* Set up Express server environment */
 
 // Initialize Express
@@ -38,7 +41,8 @@ app.post('/cities', (req, res) => {
 
     // Make external API call and send response
     getCitiesByCountry(location)
-    .then(response => res.send(response));
+    .then(response => res.send(response))
+    .catch(error => res.send(error));
 });
 
 app.post('/weather', (req, res) => {
@@ -48,7 +52,8 @@ app.post('/weather', (req, res) => {
     console.log(location);
 
     getWeatherForecast(location.lat, location.lon)
-    .then(response => res.send(response));
+    .then(response => res.send(response))
+    .catch(error => res.send(error));
 });
 
 app.post('/image', (req, res) => {
@@ -88,13 +93,15 @@ app.post('/image', (req, res) => {
                         // Else, not empty. Send state response
                         res.send(parseImageResponse(response));
                     }
-                });
+                })
+                .catch(error => res.send(error));
             } else {
 
                 // Else, not empty. Send city + state response
                 res.send(parseImageResponse(response));
             }
-        });
+        })
+        .catch(error => res.send(error));
     } else {
 
         // For international, don't include state in query
@@ -118,13 +125,44 @@ app.post('/image', (req, res) => {
                         // Else, not empty. Send country response
                         res.send(parseImageResponse(response));
                     }
-                });  
+                })
+                .catch(error => res.send(error));
             } else {
                 // Else, not empty. Send city + country response
                 res.send(parseImageResponse(response));
             }
-        });
+        })
+        .catch(error => res.send(error));
     }
+});
+
+app.post('/saveEntry', (req, res) => {
+
+    // Pull just the pieces we will need to display
+    const {city, state, country, fromDate, toDate, itinerary, forecast, img} = req.body;
+    const entry = {city, state, country, fromDate, toDate, itinerary, forecast, img};
+    
+    // Save entry to our app data
+    appData.push(entry);
+
+    // Finally, sort our data by fromDate so they will be stored in chronological order
+    appData.sort((a,b) => {
+        const fromDateA = a.fromDate;
+        const fromDateB = b.fromDate;
+
+        let comparison = 0;
+        if (fromDateA > fromDateB) {
+            comparison = 1;
+        } else if (fromDateA < fromDateB) {
+            comparison = -1;
+        }
+
+        return comparison;
+    });
+
+    console.log(`App data after save is ${JSON.stringify(appData)}`);
+
+    res.send();
 });
 
 

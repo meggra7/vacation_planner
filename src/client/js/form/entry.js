@@ -1,7 +1,7 @@
 // Initialize global entry for this file since will be accessed often
 let mEntry = window.entryBuilder;
 
-export function saveEntry() {
+export function processEntry() {
 
     // Display loading indicator
     Client.displayLoadingIndicator();
@@ -20,10 +20,19 @@ export function saveEntry() {
     .then(response => {
         Object.assign(mEntry, {img: response});
     })
-    // Finally dismiss loading indicator
+    // Save entry to local server
+    .then(response => saveEntry())
+    // Get entries from local server and display
     .then(response => {
+
+        // NEED TO UPDATE THIS PART
         Client.displayStep(window.currentStep);
         console.log(`:: saveEntry ${JSON.stringify(mEntry)} ::`);
+    })
+    .catch(error => {
+        console.log(error);
+        Client.displayStep(window.currentStep);
+        Client.displayApiError('We\'re sorry, we are unable to save your trip at this time. Please try again later.');
     });    
 }
 
@@ -136,6 +145,26 @@ async function getImage(city, state, country) {
         console.log(image);
 
         return image;
+
+    } catch (error) {
+        console.log(error);
+    };
+}
+
+async function saveEntry() {
+
+    console.log(':: saveEntry ::')
+
+    try {
+        // Make request to local server
+        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/saveEntry`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(mEntry),
+        });
+        console.log(response);
 
     } catch (error) {
         console.log(error);

@@ -22,13 +22,10 @@ export function processEntry() {
     })
     // Save entry to local server
     .then(response => saveEntry())
-    // Get entries from local server and display
-    .then(response => {
-
-        // NEED TO UPDATE THIS PART
-        Client.displayStep(window.currentStep);
-        console.log(`:: saveEntry ${JSON.stringify(mEntry)} ::`);
-    })
+    // Get entries from local server
+    .then(response => getUpcomingTrips())
+    // Display entries to user
+    .then(response => Client.displayUpcomingTrips(response))
     .catch(error => {
         console.log(error);
         Client.displayStep(window.currentStep);
@@ -151,6 +148,9 @@ async function getImage(city, state, country) {
     };
 }
 
+/**
+ * POST request to local server to save entry
+ */
 async function saveEntry() {
 
     console.log(':: saveEntry ::')
@@ -164,10 +164,37 @@ async function saveEntry() {
             },
             body: JSON.stringify(mEntry),
         });
+
+        // Log status
         console.log(response);
 
     } catch (error) {
         console.log(error);
     };
+}
+
+/**
+ * GET request to local server for all saved entries
+ */
+async function getUpcomingTrips() {
+
+    console.log(':: getUpcomingTrips ::')
+
+    try {
+        // Make request to local server
+        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/upcomingTrips`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        // Convert response to JSON object
+        return await response.json();
+
+    } catch (error) {
+        console.log(error);
+    };
+
 }
 

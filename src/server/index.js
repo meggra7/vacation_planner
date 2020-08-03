@@ -160,9 +160,12 @@ app.post('/saveEntry', (req, res) => {
         return comparison;
     });
 
-    console.log(`App data after save is ${JSON.stringify(appData)}`);
-
+    // Send standard status response
     res.send();
+});
+
+app.get('/upcomingTrips', (req, res) => {
+    res.send(JSON.stringify(appData));
 });
 
 

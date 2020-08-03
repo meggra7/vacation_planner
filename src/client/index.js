@@ -40,7 +40,7 @@ import {
     displayValidationError,
     displayApiError,
     displayLoadingIndicator,
-} from './js/form/display.js';
+} from './js/form/layout.js';
 import {
     processStepOne,
 } from './js/form/step-one.js';
@@ -55,7 +55,10 @@ import {
 } from './js/form/step-four.js';
 import {
     processEntry,
-} from './js/form/entry.js';
+} from './js/form/save.js';
+import {
+    displayUpcomingTrips,
+} from './js/form/display.js';
 export {
     backButtonPress,
     forwardButtonPress,
@@ -68,6 +71,7 @@ export {
     processStepThree,
     processStepFour,
     processEntry,
+    displayUpcomingTrips,
 }
 
 /* Import ENTRY */

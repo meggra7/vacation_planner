@@ -42,7 +42,7 @@ function validateDatesForErrors(fromDate, toDate) {
         fromDate = Client.getDateAsNumber(fromDate);
 
         // Make sure from date is also after today
-        const today = Client.getTodaysDate();
+        const today = Client.getTodayAsNumber();
         if (fromDate <= today) {
             errors.push('\'From\' date must be after today\'s date');
         }

@@ -139,8 +139,8 @@ app.post('/image', (req, res) => {
 app.post('/saveEntry', (req, res) => {
 
     // Pull just the pieces we will need to display
-    const {city, state, country, fromDate, toDate, itinerary, forecast, img} = req.body;
-    const entry = {city, state, country, fromDate, toDate, itinerary, forecast, img};
+    const {city, state, country, fromDate, toDate, itinerary, forecastType, forecast, img} = req.body;
+    const entry = {city, state, country, fromDate, toDate, itinerary, forecastType, forecast, img};
     
     // Save entry to our app data
     appData.push(entry);

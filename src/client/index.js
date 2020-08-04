@@ -8,14 +8,14 @@ export {
 
 /* Import UTILS functions*/
 import {
-    getTodaysDate,
+    getTodayAsNumber,
     getDateAsNumber,
     getDateRangeLength,
     getNumberOfDaysFromToday,
     getLongDate,
 } from './js/utils.js';
 export {
-    getTodaysDate,
+    getTodayAsNumber,
     getDateAsNumber,
     getDateRangeLength,
     getNumberOfDaysFromToday,

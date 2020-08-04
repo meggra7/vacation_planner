@@ -12,7 +12,10 @@ export function processEntry() {
     .then(response => getTripForecast(response))
     // Add trip forecast to entry
     .then(response => {
-        Object.assign(mEntry, {forecast: response});
+        Object.assign(mEntry, {
+            forecastType: response.forecastType,
+            forecast: response.forecastToDisplay,
+        });
     })
     // Get image
     .then(response => getImage(mEntry.city, mEntry.state, mEntry.country))
@@ -92,11 +95,18 @@ function getTripForecast(availableForecast) {
     };
 
     // Initiate forecast display
+    let forecastType = '';
     let forecastToDisplay = [];
     if (startDateNotFound) {
-        // Return today's forecast only
+
+        // Set forecast type as current and return today's forecast only
+        forecastType = 'current';
         forecastToDisplay.push(availableForecast[0]);
     } else {
+
+        // Set forecast type as future
+        forecastType = 'future';
+
         // Get trip length 
         let tripLength = Client.getDateRangeLength(fromDate, toDate);
         console.log(`Trip length will be ${tripLength} days`);
@@ -113,7 +123,7 @@ function getTripForecast(availableForecast) {
 
     console.log(`Trip forecast (from available) is ${JSON.stringify(forecastToDisplay)}`);
 
-    return forecastToDisplay;
+    return {forecastType, forecastToDisplay};
 }
 
 /**

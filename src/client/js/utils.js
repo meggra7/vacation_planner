@@ -1,4 +1,4 @@
-function getTodaysDate() {
+function getTodayAsNumber() {
     const today = new Date().valueOf();
     return getDateAsNumber(today);
 }
@@ -35,7 +35,7 @@ function getNumberOfDaysFromToday(date) {
     const dateAsNumber = getDateAsNumber(dateInMilli);
 
     // Return date range (excluding) by subtracting today from date
-    return dateAsNumber - getTodaysDate();
+    return dateAsNumber - getTodayAsNumber();
 }
 
 /**
@@ -95,8 +95,10 @@ function getLongDate(date) {
     return `${monthWord} ${day}, ${year}`;
 }
 
+
+
 export {
-    getTodaysDate,
+    getTodayAsNumber,
     getDateAsNumber,
     getDateRangeLength,
     getNumberOfDaysFromToday,

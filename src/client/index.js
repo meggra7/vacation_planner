@@ -44,6 +44,7 @@ import {
     displayValidationError,
     displayApiError,
     displayLoadingIndicator,
+    resetForm,
 } from './js/form/layout.js';
 import {
     processStepOne,
@@ -70,6 +71,7 @@ export {
     displayValidationError,
     displayApiError,
     displayLoadingIndicator,
+    resetForm,
     processStepOne,
     processStepTwo,
     processStepThree,
@@ -169,6 +171,7 @@ for (let i = 0; i < icons.length; i++) {
 
 
 /* Set event listeners */
+
 // Add listeners for both scroll and mouseover events to toggle the header visibility.
 document.addEventListener('scroll', checkHeaderVisibility);
 document.querySelector('header').addEventListener('mouseover', checkHeaderVisibility);

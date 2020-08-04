@@ -20,12 +20,8 @@ export function displayUpcomingTrips(upcomingTrips) {
     // Clear any prior data except header
     upcomingElement.innerHTML = '<h2>Upcoming trips</h2>';
 
-    // Then add our fragment
-    upcomingElement.appendChild(fragment)
-
-    // Re-display our form
-    // TODO Reset all form values to start fresh
-    Client.displayStep(window.currentStep);
+    // Finally add our fragment
+    upcomingElement.appendChild(fragment);
 }
 
 function newTripCard(trip) {

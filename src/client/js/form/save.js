@@ -1,30 +1,29 @@
-// Initialize global entry for this file since will be accessed often
-let mEntry = window.entryBuilder;
-
-export function processEntry() {
+export function processEntry(entry) {
 
     // Display loading indicator
     Client.displayLoadingIndicator();
 
     // Now request all available weather (16 days)
-    getAvailableWeather(mEntry.lat, mEntry.lon)
+    getAvailableWeather(entry.lat, entry.lon)
     // Compare to trip dates and retrieve forecast for trip only
-    .then(response => getTripForecast(response))
+    .then(response => getTripForecast(entry, response))
     // Add trip forecast to entry
     .then(response => {
-        Object.assign(mEntry, {
+        Object.assign(entry, {
             forecastType: response.forecastType,
             forecast: response.forecastToDisplay,
         });
     })
     // Get image
-    .then(response => getImage(mEntry.city, mEntry.state, mEntry.country))
+    .then(response => getImage(entry.city, entry.state, entry.country))
     // Add image to entry
     .then(response => {
-        Object.assign(mEntry, {img: response});
+        Object.assign(entry, {img: response});
     })
     // Save entry to local server
-    .then(response => saveEntry())
+    .then(response => saveEntry(entry))
+    // Reset form
+    .then(response => Client.resetForm())
     // Get entries from local server
     .then(response => getUpcomingTrips())
     // Display entries to user
@@ -71,11 +70,11 @@ async function getAvailableWeather(lat, lon) {
  * @param {*} availableForecast 
  * @returns Array of forecast for available days falling within trip date range.
  */
-function getTripForecast(availableForecast) {
+function getTripForecast(entry, availableForecast) {
 
     // First get our trip dates
-    const fromDate = mEntry.fromDate;
-    const toDate = mEntry.toDate;
+    const fromDate = entry.fromDate;
+    const toDate = entry.toDate;
 
     // Next, cycle through the available forecast and see if our start date is found
     let startDateNotFound = true;
@@ -161,7 +160,7 @@ async function getImage(city, state, country) {
 /**
  * POST request to local server to save entry
  */
-async function saveEntry() {
+async function saveEntry(entry) {
 
     console.log(':: saveEntry ::')
 
@@ -172,7 +171,7 @@ async function saveEntry() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(mEntry),
+            body: JSON.stringify(entry),
         });
 
         // Log status

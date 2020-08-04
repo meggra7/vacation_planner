@@ -235,6 +235,30 @@ function displayLoadingIndicator() {
     mLoadingIndicator.classList.add('visible');
 }
 
+function resetForm() {
+
+    // Reformat global entry variable
+    window.entryBuilder = {};
+    console.log(`Entry builder after reformatting: ${JSON.stringify(window.entryBuilder)}`);
+
+    // Clear step one city and country fields
+    document.querySelector('#city').value = '';
+    document.querySelector('#country').value = 'US';
+
+    // Nothing to clear on step two - it dynamically populates each time
+
+    // Clear step three date fields
+    document.querySelector('#date-from').value = '';
+    document.querySelector('#date-to').value = '';
+    
+    // Clear step four itinerary field
+    document.querySelector('#itinerary-input').value = '';
+
+    // Reset step number to 1 and display
+    window.currentStep = 1;
+    displayStep(window.currentStep);
+}
+
 export {
     backButtonPress,
     forwardButtonPress,
@@ -242,5 +266,6 @@ export {
     displayValidationError,
     displayApiError,
     displayLoadingIndicator,
+    resetForm,
 }
 

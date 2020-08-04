@@ -17,7 +17,7 @@ export function processStepFour() {
         Object.assign(window.entryBuilder, {itinerary});
 
         // Now ready to save entry
-        Client.processEntry();
+        Client.processEntry(window.entryBuilder);
 
     } else {
         Client.displayValidationError(itineraryErrors);

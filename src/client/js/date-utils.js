@@ -1,38 +1,37 @@
 function getTodayAsNumber() {
-    const today = new Date().valueOf();
+    const today = new Date();
     return getDateAsNumber(today);
 }
 
-function getDateAsNumber(dateValueInMilliseconds) {
+function getDateAsNumber(date) {
 
+    // Create new date object in milliseconds
+    const dateInMilli = new Date(date).getTime();
+
+    // Divide by milliseconds per day to get date number
     const millisecondsPerDay = 86400000;
-    let dateAsNumber = dateValueInMilliseconds / millisecondsPerDay;
-    dateAsNumber = Math.floor(dateAsNumber); // Round down to nearest integer
+    let dateAsNumber = dateInMilli / millisecondsPerDay;
+
+    // Round down to nearest integer
+    dateAsNumber = Math.floor(dateAsNumber); 
 
     return dateAsNumber;
 }
 
 function getDateRangeLength(fromDate, toDate) {
 
-    // First convert date strings into date objects in milliseconds
-    const fromDateInMilli = new Date(fromDate).getTime();
-    const toDateInMilli = new Date(toDate).getTime();
-
-    // Next, convert milliseconds to number of days
-    const fromDateAsNumber = getDateAsNumber(fromDateInMilli);
-    const toDateAsNumber = getDateAsNumber(toDateInMilli);
+    // Convert dates to number of days
+    const fromDateAsNumber = getDateAsNumber(fromDate);
+    const toDateAsNumber = getDateAsNumber(toDate);
 
     // Return date range (including) by subtracting from and to dates plus one to include
     return toDateAsNumber - fromDateAsNumber + 1;
 }
 
 function getNumberOfDaysFromToday(date) {
-    
-    // First convert date string into date object in milliseconds
-    const dateInMilli = new Date(date).getTime();
 
-    // Next, convert milliseconds to number of days
-    const dateAsNumber = getDateAsNumber(dateInMilli);
+    // Convert date to number of days
+    const dateAsNumber = getDateAsNumber(date);
 
     // Return date range (excluding) by subtracting today from date
     return dateAsNumber - getTodayAsNumber();

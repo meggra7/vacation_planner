@@ -6,6 +6,11 @@ export function processStepThree() {
     // First get reference to 'from' and 'to' dates
     const fromDate = document.querySelector('#date-from').value;
     const toDate = document.querySelector('#date-to').value;
+    console.log(`From date is:
+    ${fromDate}
+    to date is:
+    ${toDate}`);
+
 
     // First check for any validation errors
     const dateErrors = validateDatesForErrors(fromDate, toDate);

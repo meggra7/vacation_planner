@@ -6,7 +6,16 @@ Demonstrate all skills learned during Udacity's Front End Web Developer Nanodegr
 
 
 ## Features
+Enter a city and select a country to retrieve a list of destinations.  Confirm your destination, enter the dates of your trip and your itinerary.
 
+Upon saving, the app will log your trip details, retrieve weather forecast for the area, and a photo of your destination.
+
+Non-required features implemented:
+- Add end date of trip
+- Pull image from state or country when image of city not found
+- Pull forecast for multiple days (within 16 available from API)
+- Incorporate icons into forecast
+- Allow adding multiple trips, sorted by countdown
 
 
 ## Demonstrated Skills

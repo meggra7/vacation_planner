@@ -112,7 +112,14 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
     const daysFromToday = Client.getNumberOfDaysFromToday(fromDate);
 
     // Build countdown display
-    const countdownToDisplay = `${daysFromToday} days away`;
+    let countdownToDisplay = '';
+    if (daysFromToday === 1) {
+        // Display singular version
+        countdownToDisplay = `${daysFromToday} day away`;
+    } else {
+        // Display plural version
+        countdownToDisplay = `${daysFromToday} days away`;
+    }
 
     // Create paragraph element of class basic-info
     let pElement = document.createElement('p');

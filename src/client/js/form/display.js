@@ -13,7 +13,7 @@ export function displayUpcomingTrips(upcomingTrips) {
         fragment.appendChild(newTripCard(trip));
     }
 
-    // Now that we have our updated fragment, clear any previous dataFinally, add our fragment back into our document
+    
     // Get reference to our 'upcoming' section where we will display the trips
     const upcomingElement = document.querySelector('#upcoming');
 

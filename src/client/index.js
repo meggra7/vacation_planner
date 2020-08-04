@@ -145,7 +145,7 @@ document.getElementById('progress-tracker-three').setAttribute('src', stepUpcomi
 document.getElementById('progress-tracker-four').setAttribute('src', stepUpcoming);
 
 
-document.getElementById('upcoming').getElementsByTagName('img')[0].setAttribute('src', placeholderImage);
+// document.getElementById('upcoming').getElementsByTagName('img')[0].setAttribute('src', placeholderImage);
 
 const icons = document.getElementsByClassName('icon');
 for (let i = 0; i < icons.length; i++) {

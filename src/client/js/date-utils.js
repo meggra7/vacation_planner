@@ -112,14 +112,14 @@ function getLongDate(date) {
         default:
             monthWord = 'error';
             break;
-    }
+    };
 
     // Pull the day portion of the date
     let day = date.slice(8);
     if (day.slice(0,1) === '0') {
         // Remove any leading zeros
         day = day.slice(1);
-    }
+    };
 
     return `${monthWord} ${day}, ${year}`;
 }

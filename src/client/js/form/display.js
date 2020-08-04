@@ -16,7 +16,7 @@ export function displayUpcomingTrips() {
 
             // Add each created card to our fragment
             fragment.appendChild(newTripCard(trip));
-        }
+        };
 
         // Get reference to our 'upcoming' section where we will display the trips
         const upcomingElement = document.querySelector('#upcoming');
@@ -120,7 +120,7 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
     } else {
         // International will display city and country
         cityNameToDisplay = `${city}, ${country}`;
-    }
+    };
 
     // Get long versions of from and to dates
     const longFromDate = Client.getLongDate(fromDate);
@@ -140,7 +140,7 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
     } else {
         // Display plural version
         countdownToDisplay = `${daysFromToday} days away`;
-    }
+    };
 
     // Create paragraph element of class basic-info
     let pElement = document.createElement('p');
@@ -219,7 +219,7 @@ function newWeatherForecast(forecastType, forecast) {
             dateElement.textContent = 'CURRENTLY';
         } else { // forecastType === 'future'
             dateElement.textContent = day.date.slice(5);
-        }
+        };
 
         // Append date to forecast tile
         forecastElement.appendChild(dateElement);
@@ -251,7 +251,7 @@ function newWeatherForecast(forecastType, forecast) {
 
         // Finally, append constructed forecast tile to display container
         weatherDisplayElement.appendChild(forecastElement);
-    }
+    };
 
     // Append weather display to fragment
     forecastFragment.appendChild(weatherDisplayElement);
@@ -322,5 +322,5 @@ function getWeatherIcon(code) {
             return Client.c04d;
         default:
             return Client.c02d;
-    }
+    };
 }

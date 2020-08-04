@@ -43,9 +43,9 @@ function getSelectedDestination() {
         if (options[index].checked) {
             // Once checked option found, update selection
             selection = window.entryBuilder.resultsList[index];
-        }
+        };
         index++;
-    }
+    };
 
     return selection;
 }

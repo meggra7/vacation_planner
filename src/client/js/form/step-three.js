@@ -23,7 +23,7 @@ export function processStepThree() {
 
     } else {
         Client.displayValidationError(dateErrors);
-    }
+    };
 }
 
 /**
@@ -47,11 +47,11 @@ function validateDatesForErrors(fromDate, toDate) {
         const today = Client.getTodayAsNumber();
         if (fromDate <= today) {
             errors.push('\'From\' date must be after today\'s date');
-        }
+        };
 
     } else {
         errors.push('Enter a \'from\' date');
-    }
+    };
 
     // Make sure valid to date
     if (toDate) {
@@ -61,11 +61,11 @@ function validateDatesForErrors(fromDate, toDate) {
         // Make sure to date is same or greater than from date
         if (fromDate && toDate < fromDate) {
             errors.push('\'To\' date must be same as or after \'from\' date');
-        }
+        };
 
     } else {
         errors.push('Enter a \'to\' date');
-    }
+    };
 
     return errors;
 }

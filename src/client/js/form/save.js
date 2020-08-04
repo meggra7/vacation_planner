@@ -93,7 +93,7 @@ function getTripForecast(entry, availableForecast) {
             // By switching the startDateNotFound to false that will trigger 
             // exiting the loop anyway.
             forecastIndex++;
-        }
+        };
     };
 
     // Initiate forecast display
@@ -122,8 +122,8 @@ function getTripForecast(entry, availableForecast) {
             forecastToDisplay.push(availableForecast[forecastIndex]);
             forecastIndex++; // Increase forecast day
             tripLength--; // Decrease number of trip days remaining
-        }
-    }
+        };
+    };
 
     return {forecastType, forecastToDisplay};
 }

@@ -92,14 +92,14 @@ app.post('/image', (req, res) => {
 
                         // Else, not empty. Send state response
                         res.send(parseImageResponse(response));
-                    }
+                    };
                 })
                 .catch(error => res.send(error));
             } else {
 
                 // Else, not empty. Send city + state response
                 res.send(parseImageResponse(response));
-            }
+            };
         })
         .catch(error => res.send(error));
     } else {
@@ -124,16 +124,16 @@ app.post('/image', (req, res) => {
                     } else {
                         // Else, not empty. Send country response
                         res.send(parseImageResponse(response));
-                    }
+                    };
                 })
                 .catch(error => res.send(error));
             } else {
                 // Else, not empty. Send city + country response
                 res.send(parseImageResponse(response));
-            }
+            };
         })
         .catch(error => res.send(error));
-    }
+    };
 });
 
 /* Define post request to save entry to app data */
@@ -156,7 +156,7 @@ app.post('/saveEntry', (req, res) => {
             comparison = 1;
         } else if (fromDateA < fromDateB) {
             comparison = -1;
-        }
+        };
 
         return comparison;
     });
@@ -218,9 +218,8 @@ async function getCitiesByCountry(req) {
                     lat: location.lat,
                     lon: location.lng,
                 });
-
-            } // Else ignore
-        }
+            }; // Else ignore
+        };
 
         // Alphabetize results by state
         filteredData.sort((a,b) => {
@@ -232,7 +231,7 @@ async function getCitiesByCountry(req) {
                 comparison = 1;
             } else if (stateA < stateB) {
                 comparison = -1;
-            }
+            };
 
             return comparison;
         });
@@ -241,7 +240,7 @@ async function getCitiesByCountry(req) {
 
     } catch (error) {
         console.log(error);
-    }
+    };
 }
 
 /**
@@ -279,25 +278,25 @@ async function getWeatherForecast(lat, lon) {
                 low = day.low_temp.toFixed(0);
             } else if (day.min_temp !== null) {
                 low = day.min_temp.toFixed(0);
-            }
+            };
 
             let high = '00';
             if (day.high_temp !== null) {
                 high = day.high_temp.toFixed(0);
             } else if (day.max_temp !== null) {
                 high = day.max_temp.toFixed(0);
-            }
+            };
 
             const singleDayForecast = {date, low, high, code, description};
 
             forecast.push(singleDayForecast);
-        }
+        };
 
         return forecast;
 
     } catch (error) {
         console.log(error);
-    }
+    };
 }
 
 /**
@@ -321,7 +320,7 @@ async function getImage(query) {
 
     } catch (error) {
         console.log(error);
-    }
+    };
 }
 
 /**

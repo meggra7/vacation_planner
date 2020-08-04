@@ -21,7 +21,7 @@ export function processStepFour() {
 
     } else {
         Client.displayValidationError(itineraryErrors);
-    }
+    };
 }
 
 /**
@@ -37,7 +37,7 @@ function validateItineraryForErrors(itinerary) {
     // Make sure user entered itinerary text
     if (itinerary === '') {
         errors.push('Enter your itinerary');
-    }
+    };
 
     return errors;
 }

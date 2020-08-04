@@ -41,7 +41,7 @@ export function processStepOne() {
                 <br>&bull; Check for spelling errors
                 <br>&bull; Reverse any punctuation (remove if included, add if excluded)
                 <br>&bull; Reverse any abbreviation (abbreviate if spelled out, spell out if abbreviated)`);
-            }
+            };
         })
         .catch(error => {
             console.log(error);
@@ -102,7 +102,7 @@ async function getCities(city, countryAbbrev) {
 
     } catch (error) {
         console.log(error);
-    }
+    };
 }
 
 /**
@@ -119,7 +119,7 @@ function populateStepTwo() {
         const displayName = `${currentLocation.city}, ${currentLocation.state}, ${currentLocation.country}`;
         innerHtmlBuilder += `<input type='radio' name='destination' value='${cityId}'>
             <label>${displayName}</label><br><br>`;
-    }
+    };
 
     // Set the built innerHTML to element
     document.getElementById('step-two').innerHTML = innerHtmlBuilder;
@@ -127,5 +127,5 @@ function populateStepTwo() {
     // If only one option, go ahead and check it by default
     if (window.entryBuilder.resultsList.length === 1) {
         document.getElementById('step-two').getElementsByTagName('input')[0].checked = true;
-    }
+    };
 }

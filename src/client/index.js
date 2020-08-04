@@ -63,7 +63,7 @@ export {
     processStepFour,
     processEntry,
     displayUpcomingTrips,
-}
+};
 
 /* Import all stylesheets */
 import './styles/reset.scss';
@@ -112,7 +112,7 @@ export {
     s06d,
     t01d,
     t04d,
-}
+};
 
 
 /* Initial form setup */

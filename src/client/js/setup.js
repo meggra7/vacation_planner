@@ -34,7 +34,7 @@ function checkHeaderVisibility() {
         // If user is not at top of page, hide header
         if (pageYOffset > 45) {
             hideHeader();
-        }
+        };
 
     }, 2000); // Hide after 2 seconds
 }
@@ -59,7 +59,7 @@ function scrollTo(event) {
 function populateCountrySelections() {
 
     // Get reference to the country dropdown/select
-    const countryDropdown = document.querySelector('#country')
+    const countryDropdown = document.querySelector('#country');
 
     // Get array of countries and country codes
     const countries = [
@@ -331,7 +331,7 @@ function populateCountrySelections() {
     // Build options
     for (let country of countries) {
         innerHtml += `<option value='${country.code}'>${country.name}</option>`;
-    }
+    };
 
     // Set values as inner html of dropdown
     countryDropdown.innerHTML = innerHtml;

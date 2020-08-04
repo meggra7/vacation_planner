@@ -160,7 +160,7 @@ function displayStep(stepNumber) {
             // exit method to stay at current state.
             progressTrackerContainer.classList.remove('hidden');
             return;
-    }
+    };
 
     // Make sure back button ENABLED for all steps except 1
     if (stepNumber === 1) {
@@ -174,7 +174,7 @@ function displayStep(stepNumber) {
         forwardButton.textContent = 'Let\'s go!';
     } else {
         forwardButton.textContent = 'Next';
-    }
+    };
     
     // Re-display progress tracker
     progressTrackerContainer.classList.remove('hidden');
@@ -238,7 +238,7 @@ function displayApiError(error) {
             break;
         default: 
             console.log(`ERROR: Unable to re-display step ${window.currentStep}`);
-    }
+    };
 }
 
 /**

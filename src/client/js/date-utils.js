@@ -95,8 +95,6 @@ function getLongDate(date) {
     return `${monthWord} ${day}, ${year}`;
 }
 
-
-
 export {
     getTodayAsNumber,
     getDateAsNumber,

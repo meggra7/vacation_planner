@@ -1,27 +1,57 @@
-export function displayUpcomingTrips(upcomingTrips) {
+export function displayUpcomingTrips() {
 
-    console.log(`:: displayUpcomingTrips ::
-    ${JSON.stringify(upcomingTrips)}`);
+    // Get entries from local server
+    getUpcomingTrips()
+    .then(upcomingTrips => {
 
-    // Create empty fragment where we can hold trip cards as they are created
-    let fragment = document.createDocumentFragment();
+        // Create empty fragment where we can hold trip cards as they are created
+        let fragment = document.createDocumentFragment();
 
-    // Iterate over all the trips and create cards for each
-    for (let trip of upcomingTrips) {
+        // Iterate over all the trips and create cards for each
+        for (let trip of upcomingTrips) {
 
-        // Add each created card to our fragment
-        fragment.appendChild(newTripCard(trip));
-    }
+            // Add each created card to our fragment
+            fragment.appendChild(newTripCard(trip));
+        }
 
-    
-    // Get reference to our 'upcoming' section where we will display the trips
-    const upcomingElement = document.querySelector('#upcoming');
+        // Get reference to our 'upcoming' section where we will display the trips
+        const upcomingElement = document.querySelector('#upcoming');
 
-    // Clear any prior data except header
-    upcomingElement.innerHTML = '<h2>Upcoming trips</h2>';
+        // Clear any prior data except header
+        upcomingElement.innerHTML = '<h2>Upcoming trips</h2>';
 
-    // Finally add our fragment
-    upcomingElement.appendChild(fragment);
+        // Finally add our fragment
+        upcomingElement.appendChild(fragment);
+
+    })
+    .catch(error => {
+        Client.displayApiError('We\'re sorry, we are unable to display your upcoming trips at this time. Please try again later.');
+    });
+}
+
+/**
+ * GET request to local server for all saved entries
+ */
+async function getUpcomingTrips() {
+
+    console.log(':: getUpcomingTrips ::')
+
+    try {
+        // Make request to local server
+        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/upcomingTrips`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        // Convert response to JSON object
+        return await response.json();
+
+    } catch (error) {
+        console.log(error);
+    };
+
 }
 
 function newTripCard(trip) {

@@ -248,7 +248,7 @@ async function getCitiesByCountry(req) {
  * @param {*} lon 
  * @returns Forecast array including date, high and low temps, weather condition code and description
  */
-async function getWeatherForecast(lat, lon) {
+export async function getWeatherForecast(lat, lon) {
 
     // Build url
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.API_KEY_WEATHERBIT}&units=I&lat=${lat}&lon=${lon}`;

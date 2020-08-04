@@ -130,7 +130,7 @@ function populateStepTwo() {
     for (let cityId = 0; cityId < window.entryBuilder.resultsList.length; cityId++) {
         const currentLocation = window.entryBuilder.resultsList[cityId];
         const displayName = `${currentLocation.city}, ${currentLocation.state}, ${currentLocation.country}`;
-        innerHtmlBuilder += `<input type="radio" name="destination" value="${cityId}">
+        innerHtmlBuilder += `<input type='radio' name='destination' value='${cityId}'>
             <label>${displayName}</label><br><br>`;
     }
 

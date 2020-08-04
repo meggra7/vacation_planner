@@ -5,6 +5,10 @@
 Demonstrate all skills learned during Udacity's Front End Web Developer Nanodegree Program.  This project requires you to build out a travel app that, at a minimum, obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
 
 
+## Features
+
+
+
 ## Demonstrated Skills
 
 ### JavaScript
@@ -35,6 +39,3 @@ Service workers have been added to cache website data for improved performance i
 ## Authors and acknowledgment
 All code (HTML, CSS, JavaScript) original by Meghan Dunham.  APIs used include Geonames (verify location), WeatherBit (weather forecasts), and Pixabay (images).
 
-
-Luggage photo attribution:
-Image by <a href="https://pixabay.com/users/stux-12364/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149289">Stux</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149289">Pixabay</a>

@@ -30,7 +30,6 @@ function checkHeaderVisibility() {
 
     // Set timeout to hide header once scrolling has stopped
     mHeaderVisibilityTimeout = setTimeout(function() {
-        console.log(':: mHeaderVisibilityTimeout called ::')
 
         // If user is not at top of page, hide header
         if (pageYOffset > 45) {

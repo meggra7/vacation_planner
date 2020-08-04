@@ -12,7 +12,6 @@ $progress-dots-height: 5px;
     }
 
     #loading-indicator {
-        // border: 1px solid red;
         display: none;
         width: 10%;
         margin: 2em auto 4em;
@@ -24,14 +23,12 @@ $progress-dots-height: 5px;
     }
     
     #progress-tracker {
-        // border: 1px solid red;
         display: flex;
         flex-direction: row;
         align-items: center;
         padding-bottom: 2em;
 
         img {
-            // border: 1px solid red;
             width: $progress-icon-size;
             height: $progress-icon-size;
             object-fit: contain;
@@ -63,7 +60,6 @@ $progress-dots-height: 5px;
         margin-bottom: 2em;
         
         #step-one-container {
-            // outline: 1px solid blue;
             display: grid;
             grid-template-columns: minmax(100px,auto) 1fr;
             grid-template-areas: 
@@ -88,21 +84,16 @@ $progress-dots-height: 5px;
         }
         
         h3 {
-            // outline: 1px solid red;
-            
             font-weight: 400;
             padding-bottom: 2em;
         }
 
         label {
-            // outline: 1px solid red;
             padding: 8px 8px 8px 0;
-
             text-align: left;
         }
 
         input {
-            // outline: 1px solid red;
             border-radius: $rounded-corners;
             border: 1px solid lightgray;
             padding: 4px 8px;
@@ -112,7 +103,6 @@ $progress-dots-height: 5px;
         }
 
         select {
-            // outline: 1px solid red;
             padding: 4px 0;
             margin: 4px 8px 4px 0;
             font-family: $font-family-sans-serif;
@@ -120,7 +110,6 @@ $progress-dots-height: 5px;
         }
 
         textarea {
-            // border: 1px solid red;
             border-radius: $rounded-corners;
             border: 1px solid lightgray;
             width: 96%;

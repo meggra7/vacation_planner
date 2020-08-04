@@ -39,8 +39,6 @@ export function displayUpcomingTrips() {
  */
 async function getUpcomingTrips() {
 
-    console.log(':: getUpcomingTrips ::')
-
     try {
         // Make request to local server
         const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/upcomingTrips`, {

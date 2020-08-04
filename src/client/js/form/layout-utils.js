@@ -15,7 +15,6 @@ const mErrorMessage = document.getElementById('error-message');
  * @description Process user event of pressing the back button
  */
 function backButtonPress() {
-    console.log(':: backButtonPress ::')
 
     // Decrease step count
     window.currentStep -= 1;
@@ -28,7 +27,6 @@ function backButtonPress() {
  * @description Process user event of pressing the forward button
  */
 function forwardButtonPress() {
-    console.log(':: forwardButtonPress ::')
 
     switch(window.currentStep) {
         case 1:
@@ -54,7 +52,6 @@ function forwardButtonPress() {
  * @param {*} stepNumber 
  */
 function displayStep(stepNumber) {
-    console.log(`:: displayStep ${stepNumber} ::`)
 
     // Get references to our display elements
     const progressTrackerContainer = document.getElementById('progress-tracker');
@@ -267,7 +264,6 @@ function resetForm() {
 
     // Reformat global entry variable
     window.entryBuilder = {};
-    console.log(`Entry builder after reformatting: ${JSON.stringify(window.entryBuilder)}`);
 
     // Clear step one city and country fields
     document.querySelector('#city').value = '';

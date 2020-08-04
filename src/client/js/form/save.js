@@ -46,8 +46,6 @@ export function processEntry(entry) {
  */
 async function getAvailableWeather(lat, lon) {
 
-    console.log(':: getAvailableWeather ::')
-
     try {
         // Make request to local server
         const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/weather`, {
@@ -116,7 +114,6 @@ function getTripForecast(entry, availableForecast) {
 
         // Get trip length 
         let tripLength = Client.getDateRangeLength(fromDate, toDate);
-        console.log(`Trip length will be ${tripLength} days`);
 
         // Iterate over the available forecast and add days to our display
         // until we reach the end of the available forecast
@@ -127,8 +124,6 @@ function getTripForecast(entry, availableForecast) {
             tripLength--; // Decrease number of trip days remaining
         }
     }
-
-    console.log(`Trip forecast (from available) is ${JSON.stringify(forecastToDisplay)}`);
 
     return {forecastType, forecastToDisplay};
 }
@@ -144,8 +139,6 @@ function getTripForecast(entry, availableForecast) {
  */
 async function getImage(city, state, country) {
 
-    console.log(':: getImage ::')
-
     try {
         // Make request to local server
         const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/image`, {
@@ -157,11 +150,7 @@ async function getImage(city, state, country) {
         });
 
         // Return results
-        const image = await response.json();
-
-        console.log(image);
-
-        return image;
+        return await response.json();
 
     } catch (error) {
         console.log(error);
@@ -175,8 +164,6 @@ async function getImage(city, state, country) {
  */
 async function saveEntry(entry) {
 
-    console.log(':: saveEntry ::')
-
     try {
         // Make request to local server
         const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/saveEntry`, {
@@ -187,7 +174,7 @@ async function saveEntry(entry) {
             body: JSON.stringify(entry),
         });
 
-        // Log status
+        // Log status in lieu of sending response
         console.log(response);
 
     } catch (error) {

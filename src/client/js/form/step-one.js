@@ -4,13 +4,9 @@
  */
 export function processStepOne() {
 
-    console.log(':: processStepOne ::')
-
     // Collect form data
     const city = document.querySelector('#city').value.trim();
     const countryAbbrev = document.querySelector('#country').value;
-
-    console.log(`User entered: ${city}, ${countryAbbrev}`);
 
     // Validate data
     const cityErrors = validateCityForErrors(city, countryAbbrev);
@@ -30,9 +26,6 @@ export function processStepOne() {
 
                 // Begin building our entry data
                 Object.assign(window.entryBuilder, {resultsList});
-
-                // DEBUGGING SHOW CURRENT ENTRY
-                console.log(JSON.stringify(window.entryBuilder)); 
 
                 // Pre-populate step two with our results list
                 populateStepTwo();
@@ -72,8 +65,6 @@ export function processStepOne() {
  */
 function validateCityForErrors(city) {
 
-    console.log(':: validateCityForErrors ::')
-
     // Initiate error holder
     let errors = [];
 
@@ -94,8 +85,6 @@ function validateCityForErrors(city) {
  * @returns JSON city results list
  */
 async function getCities(city, countryAbbrev) {
-
-    console.log(':: getCities ::')
 
     try {
 
@@ -120,8 +109,6 @@ async function getCities(city, countryAbbrev) {
  * @description Using retrieved cities list, pre-populate step two form options
  */
 function populateStepTwo() {
-
-    console.log(':: populateStepTwo ::')
 
     // Initialize inner HTML by adding header
     let innerHtmlBuilder = '<h3>Please confirm your destination:</h3>';

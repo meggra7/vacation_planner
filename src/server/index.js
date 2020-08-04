@@ -50,7 +50,6 @@ app.post('/weather', (req, res) => {
 
     // Get request object
     const location = req.body;
-    console.log(location);
 
     getWeatherForecast(location.lat, location.lon)
     .then(response => res.send(response))
@@ -62,7 +61,6 @@ app.post('/image', (req, res) => {
 
     // Get request object
     const location = req.body;
-    console.log(location);
     const {city, state, country} = location;
 
     // Pre-define placeholder image in case needed later
@@ -308,8 +306,6 @@ async function getWeatherForecast(lat, lon) {
  * @returns Image results array
  */
 async function getImage(query) {
-
-    console.log(`:: getImage for query ${query}`);
 
     // Build url
     const url = `https://pixabay.com/api/?key=${process.env.API_KEY_PIXABAY}&q=${query}&image_type=photo&safesearch=true`;

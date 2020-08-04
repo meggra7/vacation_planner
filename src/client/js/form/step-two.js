@@ -3,8 +3,6 @@
  * results list) in order to proceed to step three.
  */
 export function processStepTwo() {
-
-    console.log(':: processStepTwo ::')
     
     // Get user selection
     const selection = getSelectedDestination();
@@ -15,8 +13,6 @@ export function processStepTwo() {
         // Update our entry builder with the selected destination
         const {city, state, country, lat, lon} = selection;
         Object.assign(window.entryBuilder, {city, state, country, lat, lon});
-        
-        console.log(`Updated entry is ${JSON.stringify(window.entryBuilder)}`);
 
         // Move to next step
         window.currentStep += 1;
@@ -34,11 +30,8 @@ export function processStepTwo() {
  */
 function getSelectedDestination() {
 
-    console.log(':: getSelectedDestination ::')
-
     // Get reference to options
     const options = document.getElementsByName('destination');
-    console.log(`Destination options: ${JSON.stringify(options)}`);
 
     // Initialize blank selection
     let selection = '';
@@ -50,7 +43,6 @@ function getSelectedDestination() {
         if (options[index].checked) {
             // Once checked option found, update selection
             selection = window.entryBuilder.resultsList[index];
-            console.log(`User selected ${selection}`);
         }
         index++;
     }

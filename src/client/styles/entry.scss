@@ -3,15 +3,12 @@ $entry-header-margin: 24px 24px 8px;
 $entry-text-margin: 8px 24px;
 
 #upcoming {
-    // border: 1px solid red;
 
     .card {
-        // border: 1px solid red;
         display: flex;
         flex-direction: column;
 
         img.location-photo {
-            // border: 1px solid red;
             width: 100%;
             border-radius: 
                 $rounded-corners 
@@ -22,14 +19,12 @@ $entry-text-margin: 8px 24px;
         }
 
         .basic-info {
-            // border: 1px solid red;
             font-family: $font-family-caveat;
             font-size: 1.4em;
             margin: $entry-header-margin;
         }
 
         h3 {
-            // border: 1px solid red;
             font-family: $font-family-sans-serif;
             font-size: 1.25em;
             font-weight: 400;
@@ -38,12 +33,10 @@ $entry-text-margin: 8px 24px;
         }
 
         p {
-            // border: 1px solid red;
             margin: $entry-text-margin;
         }
 
         .weather-display {
-            // border: 1px solid red;
             margin: $entry-text-margin;
             display: flex;
             align-items: flex-start;
@@ -71,10 +64,7 @@ $entry-text-margin: 8px 24px;
                     font-weight: 400;
 
                     &.date {
-                        // border: 1px solid red;
                         grid-area: date;
-                        // font-size: 1.25em;
-                        // font-weight: 400;
                     }
 
                     &.low-temp {
@@ -88,7 +78,6 @@ $entry-text-margin: 8px 24px;
                 }
                 
                 img.icon {
-                    // border: 1px solid red;
                     grid-area: img;
                     height: 75px;
                     width: 100%;
@@ -127,16 +116,3 @@ $entry-text-margin: 8px 24px;
         }
     }
 }
-
-
-/* WIDE TABLET AND DESKTOP DEVICES */
-// @media(min-width: 1170px) {
-
-//     #upcoming {
-
-//         /* Update width ratio of image to text */
-//         div.card {
-//             grid-template-columns: 1fr 2fr;
-//         }
-//     }
-// }

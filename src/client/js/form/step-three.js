@@ -16,8 +16,6 @@ export function processStepThree() {
 
         // Update our entry builder with the dates
         Object.assign(window.entryBuilder, {fromDate, toDate});
-        
-        console.log(`Updated entry is ${JSON.stringify(window.entryBuilder)}`);
 
         // Move to next step
         window.currentStep += 1;

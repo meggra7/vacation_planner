@@ -11,14 +11,22 @@ const mStepFour = document.getElementById('step-four');
 const mLoadingIndicator = document.getElementById('loading-indicator');
 const mErrorMessage = document.getElementById('error-message');
 
+/**
+ * @description Process user event of pressing the back button
+ */
 function backButtonPress() {
     console.log(':: backButtonPress ::')
 
     // Decrease step count
     window.currentStep -= 1;
+
+    // Display new step
     displayStep(window.currentStep);
 }
 
+/**
+ * @description Process user event of pressing the forward button
+ */
 function forwardButtonPress() {
     console.log(':: forwardButtonPress ::')
 
@@ -41,6 +49,10 @@ function forwardButtonPress() {
     };
 }
 
+/**
+ * @description Update user interface by making current step visible in the form section
+ * @param {*} stepNumber 
+ */
 function displayStep(stepNumber) {
     console.log(`:: displayStep ${stepNumber} ::`)
 
@@ -175,6 +187,11 @@ function displayStep(stepNumber) {
 
 }
 
+/**
+ * @description Display a list of errors required to correct before continuing
+ * to enter trip details.
+ * @param {*} errors 
+ */
 function displayValidationError(errors) {
 
     // Initialize the error message
@@ -192,6 +209,11 @@ function displayValidationError(errors) {
     mErrorMessage.classList.add('visible');
 }
 
+/**
+ * @description Display an error message when any internal or external API calls
+ * have failed.  Generally the result of server error.
+ * @param {*} error 
+ */
 function displayApiError(error) {
 
     // Update error text
@@ -222,6 +244,9 @@ function displayApiError(error) {
     }
 }
 
+/**
+ * @description Display the loading indicator while server and API calls are processing
+ */
 function displayLoadingIndicator() {
 
     // Hide any form displays and error messages
@@ -235,6 +260,9 @@ function displayLoadingIndicator() {
     mLoadingIndicator.classList.add('visible');
 }
 
+/**
+ * @description Reset all form input fields and load step one
+ */
 function resetForm() {
 
     // Reformat global entry variable

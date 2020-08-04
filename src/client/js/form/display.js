@@ -1,3 +1,7 @@
+/**
+ * @description Primary display function that obtains trips from local app data and 
+ * parses into a visual display element that is added to the interface
+ */
 export function displayUpcomingTrips() {
 
     // Get entries from local server
@@ -30,7 +34,8 @@ export function displayUpcomingTrips() {
 }
 
 /**
- * GET request to local server for all saved entries
+ * @description GET request to local server for all saved entries
+ * @returns Array of trip entry objects
  */
 async function getUpcomingTrips() {
 
@@ -51,9 +56,13 @@ async function getUpcomingTrips() {
     } catch (error) {
         console.log(error);
     };
-
 }
 
+/**
+ * @description Constructs a display card for a saved trip
+ * @param {*} trip 
+ * @returns div element
+ */
 function newTripCard(trip) {
 
     // Create card holder
@@ -75,6 +84,11 @@ function newTripCard(trip) {
     return tripCard;
 }
 
+/**
+ * @description Constructs an image element to be inserted into the trip card
+ * @param {*} image object with keys: src, alt
+ * @returns img element
+ */
 function newImage(image) {
 
     // Create image element of class location-photo
@@ -88,6 +102,15 @@ function newImage(image) {
     return imgElement;
 }
 
+/**
+ * @description Constructs a basic information segment to be inserted into the trip card
+ * @param {*} city 
+ * @param {*} state 
+ * @param {*} country 
+ * @param {*} fromDate 
+ * @param {*} toDate 
+ * @returns paragraph element
+ */
 function newBasicInfo(city, state, country, fromDate, toDate) {
 
     // Initialize city to display
@@ -131,6 +154,11 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
     return pElement;
 }
 
+/**
+ * @description Constructs an itinerary fragment to be inserted into the trip card
+ * @param {*} itinerary 
+ * @returns fragment
+ */
 function newItinerary(itinerary) {
 
     // Create a fragment to hold our itinerary
@@ -154,6 +182,13 @@ function newItinerary(itinerary) {
     return itineraryFragment;
 }
 
+
+/**
+ * @description Constructs a weather forecast to be inserted into the trip card
+ * @param {*} forecastType 
+ * @param {*} forecast 
+ * @returns fragment
+ */
 function newWeatherForecast(forecastType, forecast) {
 
     // Create a fragment to hold our forecast
@@ -227,8 +262,9 @@ function newWeatherForecast(forecastType, forecast) {
 }
 
 /**
- * Helper function to retrieve weather icon image path based on weather code
+ * Helper function to retrieve weather icon image based on weather code
  * @param {} code
+ * @returns image url
  */
 function getWeatherIcon(code) {
 

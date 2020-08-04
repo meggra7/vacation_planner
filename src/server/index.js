@@ -45,6 +45,7 @@ app.post('/cities', (req, res) => {
     .catch(error => res.send(error));
 });
 
+/* Define post request to get weather forecast data */
 app.post('/weather', (req, res) => {
 
     // Get request object
@@ -56,6 +57,7 @@ app.post('/weather', (req, res) => {
     .catch(error => res.send(error));
 });
 
+/* Define post request to get image data */
 app.post('/image', (req, res) => {
 
     // Get request object
@@ -136,6 +138,7 @@ app.post('/image', (req, res) => {
     }
 });
 
+/* Define post request to save entry to app data */
 app.post('/saveEntry', (req, res) => {
 
     // Pull just the pieces we will need to display
@@ -164,6 +167,7 @@ app.post('/saveEntry', (req, res) => {
     res.send();
 });
 
+/* Define get request to retrieve all app data */
 app.get('/upcomingTrips', (req, res) => {
     res.send(JSON.stringify(appData));
 });
@@ -172,7 +176,7 @@ app.get('/upcomingTrips', (req, res) => {
 /* EXTERNAL api requests */
 
 /**
- * Get list of matches for city and country provided.
+ * @description Get matching cities with detailed location from Geonames
  * @param {*} req Location request with defined country value
  * @returns Array list of matching location objects with state/province
  */
@@ -243,10 +247,11 @@ async function getCitiesByCountry(req) {
 }
 
 /**
- * Get 16-day weather forecast for specified latitude and longitude
+ * @description Get 16-day weather forecast from WeatherBit
  * @param {*} lat 
  * @param {*} lon 
- * @returns Forecast array including date, high and low temps, weather condition code and description
+ * @returns Forecast array including date, high and low temps, weather condition 
+ * code and description
  */
 async function getWeatherForecast(lat, lon) {
 
@@ -297,6 +302,11 @@ async function getWeatherForecast(lat, lon) {
     }
 }
 
+/**
+ * @description Get image results from Pixabay
+ * @param {*} query 
+ * @returns Image results array
+ */
 async function getImage(query) {
 
     console.log(`:: getImage for query ${query}`);
@@ -318,7 +328,11 @@ async function getImage(query) {
     }
 }
 
-/* Helper methods */
+/**
+ * @description Helper method to parse just needed image data from first result found
+ * @param {} response 
+ * @returns Single image object
+ */
 function parseImageResponse(response) {
 
     const imageData = response.hits[0];

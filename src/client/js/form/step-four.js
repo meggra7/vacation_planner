@@ -1,6 +1,6 @@
 /**
- * Analyze and process data for step four (enter itinerary) in order to proceed with saving 
- * and displaying entry.
+ * @description Analyze and process data for step four (enter itinerary) in order 
+ * to proceed with saving and displaying entry.
  */
 export function processStepFour() {
 
@@ -24,6 +24,11 @@ export function processStepFour() {
     }
 }
 
+/**
+ * @description Check for itinerary requirements
+ * @param {*} itinerary 
+ * @returns Array of found errors
+ */
 function validateItineraryForErrors(itinerary) {
 
     // Initiate error holder

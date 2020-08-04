@@ -1,3 +1,8 @@
+/**
+ * @description Primary save function that chains events required to obtain weather
+ * forecast and image, then saving the trip data to local app data
+ * @param {*} entry 
+ */
 export function processEntry(entry) {
 
     // Display loading indicator
@@ -34,9 +39,10 @@ export function processEntry(entry) {
 }
 
 /**
- * Make request to local server to access API endpoints and request weather forecast
+ * @description Make request to local server to access API endpoints and request weather forecast
  * @param {*} lat 
  * @param {*} lon 
+ * @returns JSON weather data
  */
 async function getAvailableWeather(lat, lon) {
 
@@ -61,12 +67,13 @@ async function getAvailableWeather(lat, lon) {
 }
 
 /**
- * Using currently available weather up to 16 days, compare to upcoming trip and get
- * available forecasts if possible.  If starting date too far in future (greater than 16 days),
- * will return the current forecast only.
+ * @description Using currently available weather up to 16 days, compare to upcoming 
+ * trip and get available forecasts if possible.  If starting date too far in future 
+ * (greater than 16 days), will return the current forecast only.
  * 
+ * @param {*} entry
  * @param {*} availableForecast 
- * @returns Array of forecast for available days falling within trip date range.
+ * @returns Object with forecast type and forecast array
  */
 function getTripForecast(entry, availableForecast) {
 
@@ -94,11 +101,14 @@ function getTripForecast(entry, availableForecast) {
     // Initiate forecast display
     let forecastType = '';
     let forecastToDisplay = [];
+
+    // Set the type and forecast
     if (startDateNotFound) {
 
         // Set forecast type as current and return today's forecast only
         forecastType = 'current';
         forecastToDisplay.push(availableForecast[0]);
+
     } else {
 
         // Set forecast type as future
@@ -124,10 +134,13 @@ function getTripForecast(entry, availableForecast) {
 }
 
 /**
- * Make request to local server to access API endpoints and request image for our location
+ * @description Make request to local server to access API endpoints and request 
+ * image for our location.
+ * 
  * @param {*} city 
  * @param {*} state 
  * @param {*} country 
+ * @returns image Object
  */
 async function getImage(city, state, country) {
 
@@ -156,7 +169,9 @@ async function getImage(city, state, country) {
 }
 
 /**
- * POST request to local server to save entry
+ * @description POST request to local server to save entry
+ * 
+ * @param {*} entry
  */
 async function saveEntry(entry) {
 

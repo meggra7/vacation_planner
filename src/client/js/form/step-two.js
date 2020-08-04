@@ -1,5 +1,6 @@
 /**
- * Analyze and process data for step two (confirm destination from results list) in order to proceed to step three.
+ * @description Analyze and process data for step two (confirm destination from 
+ * results list) in order to proceed to step three.
  */
 export function processStepTwo() {
 
@@ -28,7 +29,7 @@ export function processStepTwo() {
 }
 
 /**
- * Get reference to destination selections and locate selected option
+ * @description Get reference to destination selections and locate selected option
  * @returns Selected destination object
  */
 function getSelectedDestination() {

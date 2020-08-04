@@ -1,5 +1,6 @@
 /**
- * Analyze and process data for step one (enter destination city and country) in order to proceed to step two.
+ * @description Analyze and process data for step one (enter destination city and 
+ * country) in order to proceed to step two.
  */
 export function processStepOne() {
 
@@ -14,11 +15,10 @@ export function processStepOne() {
     // Validate data
     const cityErrors = validateCityForErrors(city, countryAbbrev);
 
+    // Check for any validation errors
     if (cityErrors.length === 0) {
 
-        // No validation errors, ok to process data
-
-        // Display loading indicator
+        // If no errors, ok to proceed and display loading indicator
         Client.displayLoadingIndicator();
 
         // Request city results
@@ -66,9 +66,9 @@ export function processStepOne() {
 }
 
 /**
- * Validate destination city form input
+ * @description Check for city requirements
  * @param {*} city 
- * @param {*} countryAbbrev 
+ * @returns Array of found errors
  */
 function validateCityForErrors(city) {
 
@@ -87,9 +87,11 @@ function validateCityForErrors(city) {
 
 
 /**
- * Make request to local server to access API endpoints and request list of cities
+ * @description Make request to local server to access API endpoints and 
+ * request list of cities
  * @param {*} city 
  * @param {*} countryAbbrev 
+ * @returns JSON city results list
  */
 async function getCities(city, countryAbbrev) {
 
@@ -115,7 +117,7 @@ async function getCities(city, countryAbbrev) {
 }
 
 /**
- * Using retrieved cities list, pre-populate step two form options
+ * @description Using retrieved cities list, pre-populate step two form options
  */
 function populateStepTwo() {
 

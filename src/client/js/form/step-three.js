@@ -1,18 +1,14 @@
 /**
- * Analyze and process data for step three (enter dates) in order to proceed to step four.
+ * @description Analyze and process data for step three (enter dates) in order to 
+ * proceed to step four.
  */
 export function processStepThree() {
 
     // First get reference to 'from' and 'to' dates
     const fromDate = document.querySelector('#date-from').value;
     const toDate = document.querySelector('#date-to').value;
-    console.log(`From date is:
-    ${fromDate}
-    to date is:
-    ${toDate}`);
 
-
-    // First check for any validation errors
+    // Check for any validation errors
     const dateErrors = validateDatesForErrors(fromDate, toDate);
 
     // Make sure no errors in order to proceed
@@ -33,8 +29,11 @@ export function processStepThree() {
 }
 
 /**
- * Check user input to make sure dates entered and in the future, relative to today and each other
- * @returns List of errors, if any
+ * @description Check user input to make sure dates entered and in the future, 
+ * relative to today and each other.
+ * @param {*} fromDate
+ * @param {*} toDate
+ * @returns Array of found errors
  */
 function validateDatesForErrors(fromDate, toDate) {
 

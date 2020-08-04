@@ -1,20 +1,26 @@
+/* Set file-global variables */
 const mHeader = document.querySelector('header');
 let mHeaderVisibilityTimeout;
 
-
+/**
+ * @description Makes header visible
+ */
 function showHeader() {
     mHeader.classList.remove('hidden');
     mHeader.classList.add('visible');
 }
 
+/**
+ * @description Hides header
+ */
 function hideHeader() {
     mHeader.classList.remove('visible');
     mHeader.classList.add('hidden');
 }
 
 /**
- * @description Toggle header to only be visible if user is at top of page, is scrolling, or
- * mouses over the top of the page.
+ * @description Toggle header to only be visible if user is at top of page, 
+ * is scrolling, or mouses over the top of the page.
  */
 function checkHeaderVisibility() {
 
@@ -48,6 +54,9 @@ function scrollTo(event) {
     });
 }
 
+/**
+ * @description Setup function to load country options for form step one
+ */
 function populateCountrySelections() {
 
     // Get reference to the country dropdown/select
@@ -336,4 +345,3 @@ export {
     scrollTo,
     populateCountrySelections,
 };
-

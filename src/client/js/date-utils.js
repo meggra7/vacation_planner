@@ -1,8 +1,8 @@
-function getTodayAsNumber() {
-    const today = new Date();
-    return getDateAsNumber(today);
-}
-
+/**
+ * @description Takes a date and gets date number since January 1, 1970, UTC
+ * @param {string} date YYYY-MM-DD
+ * @returns {number}
+ */
 function getDateAsNumber(date) {
 
     // Create new date object in milliseconds
@@ -18,6 +18,21 @@ function getDateAsNumber(date) {
     return dateAsNumber;
 }
 
+/**
+ * @description Gets today as a date number since January 1, 1970, UTC
+ * @returns {number}
+ */
+function getTodayAsNumber() {
+    const today = new Date();
+    return getDateAsNumber(today);
+}
+
+/**
+ * @description Calculates the number of days (including) between two dates
+ * @param {string} fromDate YYYY-MM-DD
+ * @param {string} toDate YYYY-MM-DD
+ * @returns {number}
+ */
 function getDateRangeLength(fromDate, toDate) {
 
     // Convert dates to number of days
@@ -28,6 +43,12 @@ function getDateRangeLength(fromDate, toDate) {
     return toDateAsNumber - fromDateAsNumber + 1;
 }
 
+
+/**
+ * @description Calculates the number of days (excluding) from today
+ * @param {string} date YYYY-MM-DD
+ * @returns {number}
+ */
 function getNumberOfDaysFromToday(date) {
 
     // Convert date to number of days
@@ -38,20 +59,18 @@ function getNumberOfDaysFromToday(date) {
 }
 
 /**
- * Takes a numeric date in format YYYY-MM-DD and returns the date in long form
+ * @description Formats a short date into a long, readable format
  * with the month written out.
- * @param {} date 
+ * @param {string} date YYYY-MM-DD
+ * @returns {string}
  */
 function getLongDate(date) {
 
+    // Pull the year portion of the date
     const year = date.slice(0,4);
-    const monthNumber = date.slice(5,7);
-    let day = date.slice(8);
-    if (day.slice(0,1) === '0') {
-        // Remove any leading zeros
-        day = day.slice(1);
-    }
 
+    // Pull the month portion of the date and convert to word
+    const monthNumber = date.slice(5,7);
     let monthWord = '';
     switch (monthNumber) {
         case '01':
@@ -93,6 +112,13 @@ function getLongDate(date) {
         default:
             monthWord = 'error';
             break;
+    }
+
+    // Pull the day portion of the date
+    let day = date.slice(8);
+    if (day.slice(0,1) === '0') {
+        // Remove any leading zeros
+        day = day.slice(1);
     }
 
     return `${monthWord} ${day}, ${year}`;

@@ -1,9 +1,9 @@
 /**
- * @description Analyze and process data for step two (confirm destination from 
+ * @description Analyze and process data for step two (confirm destination from
  * results list) in order to proceed to step three.
  */
 export function processStepTwo() {
-    
+
     // Get user selection
     const selection = getSelectedDestination();
 

@@ -15,13 +15,13 @@ $progress-dots-height: 5px;
         display: none;
         width: 10%;
         margin: 2em auto 4em;
-        
+
 
         &.visible {
             display: block;
         }
     }
-    
+
     #progress-tracker {
         display: flex;
         flex-direction: row;
@@ -58,11 +58,11 @@ $progress-dots-height: 5px;
     form {
         display: none;
         margin-bottom: 2em;
-        
+
         #step-one-container {
             display: grid;
             grid-template-columns: minmax(100px,auto) 1fr;
-            grid-template-areas: 
+            grid-template-areas:
                 'cityLabel      cityInput'
                 'countryLabel   countryInput';
 
@@ -82,7 +82,7 @@ $progress-dots-height: 5px;
                 grid-area: countryInput;
             }
         }
-        
+
         h3 {
             font-weight: 400;
             padding-bottom: 2em;
@@ -155,19 +155,19 @@ $progress-dots-height: 5px;
             font-family: $font-family-sans-serif;
             font-weight: 300;
             width: 7em;
-    
+
             &:hover {
                 background-color: $color-secondary-light;
                 cursor: pointer;
             }
-    
+
             &:active {
                 background-color: $color-secondary;
                 box-shadow: inset 1px 1px 3px $color-secondary-dark;
             }
-    
-            
-    
+
+
+
             &:disabled {
                 background-color: white;
                 border: 1px solid lightgray;
@@ -192,7 +192,7 @@ $progress-dots-height: 5px;
 
             #step-one-container {
                 grid-template-columns: minmax(100px,auto) 1fr;
-                grid-template-areas: 
+                grid-template-areas:
                     'cityLabel      cityInput'
                     'countryLabel   countryInput';
             }

@@ -19,7 +19,7 @@ function hideHeader() {
 }
 
 /**
- * @description Toggle header to only be visible if user is at top of page, 
+ * @description Toggle header to only be visible if user is at top of page,
  * is scrolling, or mouses over the top of the page.
  */
 function checkHeaderVisibility() {

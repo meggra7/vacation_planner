@@ -1,5 +1,5 @@
 /**
- * @description Analyze and process data for step one (enter destination city and 
+ * @description Analyze and process data for step one (enter destination city and
  * country) in order to proceed to step two.
  */
 export function processStepOne() {
@@ -20,7 +20,7 @@ export function processStepOne() {
         // Request city results
         getCities(city, countryAbbrev)
         .then(resultsList => {
-                
+
             // Make sure response not empty
             if (resultsList.length > 0) {
 
@@ -60,7 +60,7 @@ export function processStepOne() {
 
 /**
  * @description Check for city requirements
- * @param {*} city 
+ * @param {*} city
  * @returns Array of found errors
  */
 function validateCityForErrors(city) {
@@ -73,15 +73,15 @@ function validateCityForErrors(city) {
         errors.push('Enter city name');
     };
 
-    return errors;    
+    return errors;
 }
 
 
 /**
- * @description Make request to local server to access API endpoints and 
+ * @description Make request to local server to access API endpoints and
  * request list of cities
- * @param {*} city 
- * @param {*} countryAbbrev 
+ * @param {*} city
+ * @param {*} countryAbbrev
  * @returns JSON city results list
  */
 async function getCities(city, countryAbbrev) {

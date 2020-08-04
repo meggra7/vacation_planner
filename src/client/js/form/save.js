@@ -1,7 +1,7 @@
 /**
  * @description Primary save function that chains events required to obtain weather
  * forecast and image, then saving the trip data to local app data
- * @param {*} entry 
+ * @param {*} entry
  */
 export function processEntry(entry) {
 
@@ -35,13 +35,13 @@ export function processEntry(entry) {
         console.log(error);
         Client.displayStep(window.currentStep);
         Client.displayApiError('We\'re sorry, we are unable to save your trip at this time. Please try again later.');
-    });    
+    });
 }
 
 /**
  * @description Make request to local server to access API endpoints and request weather forecast
- * @param {*} lat 
- * @param {*} lon 
+ * @param {*} lat
+ * @param {*} lon
  * @returns JSON weather data
  */
 async function getAvailableWeather(lat, lon) {
@@ -65,12 +65,12 @@ async function getAvailableWeather(lat, lon) {
 }
 
 /**
- * @description Using currently available weather up to 16 days, compare to upcoming 
- * trip and get available forecasts if possible.  If starting date too far in future 
+ * @description Using currently available weather up to 16 days, compare to upcoming
+ * trip and get available forecasts if possible.  If starting date too far in future
  * (greater than 16 days), will return the current forecast only.
- * 
+ *
  * @param {*} entry
- * @param {*} availableForecast 
+ * @param {*} availableForecast
  * @returns Object with forecast type and forecast array
  */
 function getTripForecast(entry, availableForecast) {
@@ -89,8 +89,8 @@ function getTripForecast(entry, availableForecast) {
             startDateNotFound = false;
         } else {
             // Only increase index if not found, since once it's found we want
-            // to save the forecast index where it was found as our starting point.  
-            // By switching the startDateNotFound to false that will trigger 
+            // to save the forecast index where it was found as our starting point.
+            // By switching the startDateNotFound to false that will trigger
             // exiting the loop anyway.
             forecastIndex++;
         };
@@ -112,7 +112,7 @@ function getTripForecast(entry, availableForecast) {
         // Set forecast type as future
         forecastType = 'future';
 
-        // Get trip length 
+        // Get trip length
         let tripLength = Client.getDateRangeLength(fromDate, toDate);
 
         // Iterate over the available forecast and add days to our display
@@ -129,12 +129,12 @@ function getTripForecast(entry, availableForecast) {
 }
 
 /**
- * @description Make request to local server to access API endpoints and request 
+ * @description Make request to local server to access API endpoints and request
  * image for our location.
- * 
- * @param {*} city 
- * @param {*} state 
- * @param {*} country 
+ *
+ * @param {*} city
+ * @param {*} state
+ * @param {*} country
  * @returns image Object
  */
 async function getImage(city, state, country) {
@@ -159,7 +159,7 @@ async function getImage(city, state, country) {
 
 /**
  * @description POST request to local server to save entry
- * 
+ *
  * @param {*} entry
  */
 async function saveEntry(entry) {

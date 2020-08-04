@@ -10,8 +10,8 @@ $entry-text-margin: 8px 24px;
 
         img.location-photo {
             width: 100%;
-            border-radius: 
-                $rounded-corners 
+            border-radius:
+                $rounded-corners
                 $rounded-corners
                 0
                 0;
@@ -44,18 +44,18 @@ $entry-text-margin: 8px 24px;
             overflow-x: auto;
 
             .forecast {
-                
+
                 display: grid;
                 grid-template-rows: auto 2fr auto;
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-areas: 
+                grid-template-areas:
                     'date   date'
                     'img    img'
                     'low    high';
                 border-radius: $rounded-corners;
                 border: 1px solid lightgray;
                 margin: 0 2px;
-                
+
 
                 p {
                     margin: 0;
@@ -76,7 +76,7 @@ $entry-text-margin: 8px 24px;
                         color: crimson;
                     }
                 }
-                
+
                 img.icon {
                     grid-area: img;
                     height: 75px;
@@ -106,7 +106,7 @@ $entry-text-margin: 8px 24px;
 
             img.location-photo {
                 grid-area: img;
-                border-radius: 
+                border-radius:
                     $rounded-corners
                     0
                     0

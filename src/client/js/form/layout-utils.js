@@ -43,19 +43,19 @@ function forwardButtonPress() {
             break;
         default:
             console.log(`ERROR: Unable to process forward button press`);
-            return;            
+            return;
     };
 }
 
 /**
  * @description Update user interface by making current step visible in the form section
- * @param {*} stepNumber 
+ * @param {*} stepNumber
  */
 function displayStep(stepNumber) {
 
     // Get references to our display elements
     const progressTrackerContainer = document.getElementById('progress-tracker');
-    const progressTrackerOne = document.getElementById('progress-tracker-one');    
+    const progressTrackerOne = document.getElementById('progress-tracker-one');
     const progressTrackerTwo = document.getElementById('progress-tracker-two');
     const progressTrackerThree = document.getElementById('progress-tracker-three');
     const progressTrackerFour = document.getElementById('progress-tracker-four');
@@ -64,7 +64,7 @@ function displayStep(stepNumber) {
 
     // Hide any previous errors
     mErrorMessage.classList.remove('visible');
-    
+
     // Hide progress tracker while updating
     progressTrackerContainer.classList.add('hidden');
 
@@ -175,7 +175,7 @@ function displayStep(stepNumber) {
     } else {
         forwardButton.textContent = 'Next';
     };
-    
+
     // Re-display progress tracker
     progressTrackerContainer.classList.remove('hidden');
 
@@ -187,7 +187,7 @@ function displayStep(stepNumber) {
 /**
  * @description Display a list of errors required to correct before continuing
  * to enter trip details.
- * @param {*} errors 
+ * @param {*} errors
  */
 function displayValidationError(errors) {
 
@@ -209,7 +209,7 @@ function displayValidationError(errors) {
 /**
  * @description Display an error message when any internal or external API calls
  * have failed.  Generally the result of server error.
- * @param {*} error 
+ * @param {*} error
  */
 function displayApiError(error) {
 
@@ -236,7 +236,7 @@ function displayApiError(error) {
         case 4:
             mStepFour.classList.add('visible');
             break;
-        default: 
+        default:
             console.log(`ERROR: Unable to re-display step ${window.currentStep}`);
     };
 }
@@ -274,7 +274,7 @@ function resetForm() {
     // Clear step three date fields
     document.querySelector('#date-from').value = '';
     document.querySelector('#date-to').value = '';
-    
+
     // Clear step four itinerary field
     document.querySelector('#itinerary-input').value = '';
 

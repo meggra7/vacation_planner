@@ -1,7 +1,7 @@
 // Import functions to be tested, client-side so no server required
-import { 
+import {
     getDateRangeLength,
-    getLongDate, 
+    getLongDate,
 } from '../src/client/js/date-utils.js';
 
 // Client test 1

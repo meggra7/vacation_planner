@@ -1,5 +1,5 @@
 /**
- * @description Primary display function that obtains trips from local app data and 
+ * @description Primary display function that obtains trips from local app data and
  * parses into a visual display element that is added to the interface
  */
 export function displayUpcomingTrips() {
@@ -47,7 +47,7 @@ async function getUpcomingTrips() {
                 'Content-Type': 'application/json',
             },
         });
-        
+
         // Convert response to JSON object
         return await response.json();
 
@@ -58,7 +58,7 @@ async function getUpcomingTrips() {
 
 /**
  * @description Constructs a display card for a saved trip
- * @param {*} trip 
+ * @param {*} trip
  * @returns div element
  */
 function newTripCard(trip) {
@@ -102,11 +102,11 @@ function newImage(image) {
 
 /**
  * @description Constructs a basic information segment to be inserted into the trip card
- * @param {*} city 
- * @param {*} state 
- * @param {*} country 
- * @param {*} fromDate 
- * @param {*} toDate 
+ * @param {*} city
+ * @param {*} state
+ * @param {*} country
+ * @param {*} fromDate
+ * @param {*} toDate
  * @returns paragraph element
  */
 function newBasicInfo(city, state, country, fromDate, toDate) {
@@ -145,7 +145,7 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
     // Create paragraph element of class basic-info
     let pElement = document.createElement('p');
     pElement.classList.add('basic-info');
-    
+
     // Set inner HTML using text displays found above
     pElement.innerHTML = `${cityNameToDisplay}<br>${dateToDisplay}<br>${countdownToDisplay}`;
 
@@ -154,7 +154,7 @@ function newBasicInfo(city, state, country, fromDate, toDate) {
 
 /**
  * @description Constructs an itinerary fragment to be inserted into the trip card
- * @param {*} itinerary 
+ * @param {*} itinerary
  * @returns fragment
  */
 function newItinerary(itinerary) {
@@ -170,7 +170,7 @@ function newItinerary(itinerary) {
     // Create paragraph element of class itinerary-display
     const pElement = document.createElement('p');
     pElement.classList.add('itinerary-display');
-    
+
     // Set the itinerary as the paragraph text
     pElement.textContent = itinerary;
 
@@ -183,8 +183,8 @@ function newItinerary(itinerary) {
 
 /**
  * @description Constructs a weather forecast to be inserted into the trip card
- * @param {*} forecastType 
- * @param {*} forecast 
+ * @param {*} forecastType
+ * @param {*} forecast
  * @returns fragment
  */
 function newWeatherForecast(forecastType, forecast) {

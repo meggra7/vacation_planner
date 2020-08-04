@@ -13,7 +13,7 @@ function getDateAsNumber(date) {
     let dateAsNumber = dateInMilli / millisecondsPerDay;
 
     // Round down to nearest integer
-    dateAsNumber = Math.floor(dateAsNumber); 
+    dateAsNumber = Math.floor(dateAsNumber);
 
     return dateAsNumber;
 }

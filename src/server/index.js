@@ -142,7 +142,7 @@ app.post('/saveEntry', (req, res) => {
     // Pull just the pieces we will need to display
     const {city, state, country, fromDate, toDate, itinerary, forecastType, forecast, img} = req.body;
     const entry = {city, state, country, fromDate, toDate, itinerary, forecastType, forecast, img};
-    
+
     // Save entry to our app data
     appData.push(entry);
 
@@ -205,7 +205,7 @@ async function getCitiesByCountry(req) {
             // AND state isn't blank
             // AND city name matches (name may have matched elsewhere)
             const currentState = location.adminName1;
-            if (!statesFound.has(currentState) 
+            if (!statesFound.has(currentState)
                 && location.adminName1 !== ''
                 && city.toLowerCase() === location.name.toLowerCase()) {
 
@@ -235,7 +235,7 @@ async function getCitiesByCountry(req) {
 
             return comparison;
         });
-        
+
         return filteredData;
 
     } catch (error) {
@@ -245,9 +245,9 @@ async function getCitiesByCountry(req) {
 
 /**
  * @description Get 16-day weather forecast from WeatherBit
- * @param {*} lat 
- * @param {*} lon 
- * @returns Forecast array including date, high and low temps, weather condition 
+ * @param {*} lat
+ * @param {*} lon
+ * @returns Forecast array including date, high and low temps, weather condition
  * code and description
  */
 async function getWeatherForecast(lat, lon) {
@@ -301,7 +301,7 @@ async function getWeatherForecast(lat, lon) {
 
 /**
  * @description Get image results from Pixabay
- * @param {*} query 
+ * @param {*} query
  * @returns Image results array
  */
 async function getImage(query) {
@@ -325,7 +325,7 @@ async function getImage(query) {
 
 /**
  * @description Helper method to parse just needed image data from first result found
- * @param {} response 
+ * @param {} response
  * @returns Single image object
  */
 function parseImageResponse(response) {

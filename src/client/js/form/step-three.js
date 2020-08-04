@@ -1,5 +1,5 @@
 /**
- * @description Analyze and process data for step three (enter dates) in order to 
+ * @description Analyze and process data for step three (enter dates) in order to
  * proceed to step four.
  */
 export function processStepThree() {
@@ -27,7 +27,7 @@ export function processStepThree() {
 }
 
 /**
- * @description Check user input to make sure dates entered and in the future, 
+ * @description Check user input to make sure dates entered and in the future,
  * relative to today and each other.
  * @param {*} fromDate
  * @param {*} toDate
@@ -57,7 +57,7 @@ function validateDatesForErrors(fromDate, toDate) {
     if (toDate) {
         toDate = new Date(document.querySelector('#date-to').value);
         toDate = Client.getDateAsNumber(toDate);
-        
+
         // Make sure to date is same or greater than from date
         if (fromDate && toDate < fromDate) {
             errors.push('\'To\' date must be same as or after \'from\' date');

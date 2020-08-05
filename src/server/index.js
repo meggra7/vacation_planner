@@ -25,9 +25,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Set up host server
-const localHost = 8081;
-const server = app.listen(localHost, () => {
-    console.log(`Server running on localhost:${localHost}`);
+const server = app.listen(process.env.PORT, () => {
+    console.log(`Server running on localhost:${process.env.PORT}`);
 });
 
 

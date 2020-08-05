@@ -115,6 +115,13 @@ export {
 };
 
 
+
+/* Add shortcut icon */
+const link = document.createElement('link');
+link.setAttribute('href', airplane);
+link.setAttribute('rel', 'shortcut icon');
+document.querySelector('head').appendChild(link);
+
 /* Initial form setup */
 populateCountrySelections();
 document.getElementById('loading-indicator').setAttribute('src', loadingIndicator);

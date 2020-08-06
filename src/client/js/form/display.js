@@ -41,7 +41,7 @@ async function getUpcomingTrips() {
 
     try {
         // Make request to local server
-        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/upcomingTrips`, {
+        const response = await fetch(`/upcomingTrips`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

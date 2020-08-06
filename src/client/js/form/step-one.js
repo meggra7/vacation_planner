@@ -89,7 +89,7 @@ async function getCities(city, countryAbbrev) {
     try {
 
         // Make request to local server
-        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/cities`, {
+        const response = await fetch(`/cities`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

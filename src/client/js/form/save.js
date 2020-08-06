@@ -48,7 +48,7 @@ async function getAvailableWeather(lat, lon) {
 
     try {
         // Make request to local server
-        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/weather`, {
+        const response = await fetch(`/weather`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ async function getImage(city, state, country) {
 
     try {
         // Make request to local server
-        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/image`, {
+        const response = await fetch(`/image`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ async function saveEntry(entry) {
 
     try {
         // Make request to local server
-        const response = await fetch(`${window.LOCAL_SERVER_BASE_URL}/saveEntry`, {
+        const response = await fetch(`/saveEntry`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

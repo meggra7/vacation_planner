@@ -54,6 +54,28 @@ function scrollTo(event) {
 }
 
 /**
+ * @description Resets all app data saved to server
+ */
+async function resetData() {
+
+    try {
+        // Make request to local server
+        const response = await fetch(`/resetData`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        // Log status in lieu of sending response
+        console.log(response);
+
+    } catch (error) {
+        console.log(error);
+    };
+}
+
+/**
  * @description Setup function to load country options for form step one
  */
 function populateCountrySelections() {
@@ -342,5 +364,6 @@ export {
     hideHeader,
     checkHeaderVisibility,
     scrollTo,
+    resetData,
     populateCountrySelections,
 };

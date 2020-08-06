@@ -169,6 +169,16 @@ app.get('/upcomingTrips', (req, res) => {
     res.send(JSON.stringify(appData));
 });
 
+/* Define get request to reset all app data */
+app.get('/resetData', (req, res) => {
+
+    // Reset app data to empty array
+    appData = [];
+    
+    // Send standard status response
+    res.send();
+});
+
 
 /* EXTERNAL api requests */
 

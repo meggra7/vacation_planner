@@ -2,6 +2,7 @@
 import {
     checkHeaderVisibility,
     scrollTo,
+    resetData,
     populateCountrySelections,
 } from './js/setup.js';
 
@@ -144,3 +145,6 @@ document.querySelector('header').addEventListener('click', scrollTo);
 // Add listeners to form buttons
 document.querySelector('#back-button').addEventListener('click', backButtonPress);
 document.querySelector('#forward-button').addEventListener('click', forwardButtonPress);
+
+// Add listener to load event to make sure data reset
+window.addEventListener('load', resetData);
